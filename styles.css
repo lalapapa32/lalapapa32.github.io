@@ -1,0 +1,236 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(145deg, #0f0f0f, #1e1e1e);
+  color: #fff;
+}
+
+/* Scroll Progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 5px;
+  background: #fff;
+  width: 0%;
+  z-index: 1000;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  z-index: 999;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+.animated-logo {
+  animation: fadeSlideDown 1s ease forwards;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+/* Hero */
+.hero {
+  background: linear-gradient(to right, #000000, #1c1c1c);
+  color: white;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  animation: fadeInDown 1s ease;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  animation: fadeInUp 1s ease;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  background: white;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+
+/* Sections */
+.section {
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.floating-heading {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Product Cards */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.product-card {
+  width: 280px;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  backdrop-filter: blur(20px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.product-card h3 {
+  font-size: 1.3rem;
+  margin: 1rem 0 0.3rem;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.product-card button {
+  margin: 1rem 0;
+  padding: 0.6rem 1.5rem;
+  background: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.product-card button:hover {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+/* Glassmorphism Style */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Form */
+.contact form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+.contact input,
+.contact textarea {
+  margin: 10px 0;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 10px;
+}
+
+.contact button {
+  padding: 0.8rem;
+  background: white;
+  color: black;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact button:hover {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+/* Footer */
+footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
