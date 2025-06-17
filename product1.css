@@ -29,3 +29,29 @@ if (document.getElementById('product-image')) {
     }, 2000);
   });
 }
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+.product-card {
+  background: #111;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.02);
+}
+
+.product-card button {
+  background: white;
+  color: black;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
