@@ -64,6 +64,21 @@
             color: #fff;
         }
 
+        .back-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
         /* Product Page */
         .product-page {
             display: flex;
@@ -208,6 +223,7 @@
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </nav>
+        <button class="back-button" onclick="window.location.href='http://lalapapa32.github.io'">Back</button>
     </header>
 
     <!-- Product Section -->
