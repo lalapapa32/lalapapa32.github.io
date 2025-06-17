@@ -371,12 +371,13 @@
       totalPriceElement.innerText = `Total: Rs. ${totalPrice}`;
     }
 
-    // Function to add item to cart
+    // Function to add item to cart and open modal
     function addToCart(id, name, price) {
       cart.push({ id, name, price });
       localStorage.setItem('cart', JSON.stringify(cart));
       updateCartCount();
-      displayCartItems();
+      openModal(); // Open the cart modal after adding the item
+      displayCartItems(); // Display the updated cart items
     }
 
     // Function to remove item from cart
