@@ -79,6 +79,13 @@
             background: rgba(255, 255, 255, 0.2);
         }
 
+        .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
         /* Product Page */
         .product-page {
             display: flex;
@@ -202,12 +209,60 @@
             font-style: italic;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem 1rem;
-            color: #999;
-            font-size: 0.9rem;
+        /* Cart Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #222;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .cart-item button {
+            margin-left: 10px;
+            padding: 0.3rem 0.6rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
@@ -224,6 +279,7 @@
             <a href="#contact">Contact</a>
         </nav>
         <button class="back-button" onclick="window.location.href='http://lalapapa32.github.io'">Back</button>
+        <span class="cart-icon" onclick="openCart()">🛒</span>
     </header>
 
     <!-- Product Section -->
@@ -240,7 +296,7 @@
                 A statement piece carved in confidence.<br>
                 This Black Chic Blazer drapes elegance with attitude—crafted for the woman who walks in both shadows and spotlight.
             </p>
-            <button class="buy-button" onclick="addToCart()">Buy Now</button>
+            <button class="buy-button" onclick="addToCart('1', 'Black Chic Blazer', 5999)">Buy Now</button>
             <div id="notification" class="notification">Added to Cart</div>
         </div>
     </main>
@@ -251,6 +307,16 @@
         <p>⭐⭐⭐⭐⭐ - “Absolutely stunning, fits like a dream!” – Areeba M.</p>
         <p>⭐⭐⭐⭐ - “Elegant and comfortable. Perfect for formal dinners.” – Zara K.</p>
     </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <p id="total-price">Total: Rs. 0</p>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -266,6 +332,7 @@
 
         let current = 0;
         const imgElement = document.getElementById("slider-image");
+        let cart = [];
 
         function showImage(index) {
             imgElement.style.opacity = 0;
@@ -286,7 +353,14 @@
         }
 
         // Add to cart notification
-        function addToCart() {
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1; // Increase quantity if item already exists
+            } else {
+                cart.push({ id, name, price, quantity: 1 }); // Add new item
+            }
+            updateCart(); // Update the cart display
             const notify = document.getElementById("notification");
             notify.style.display = "block";
             notify.style.opacity = "1";
@@ -295,6 +369,53 @@
                 notify.style.opacity = "0";
                 setTimeout(() => notify.style.display = "none", 500);
             }, 2000);
+        }
+
+        // Open cart modal
+        function openCart() {
+            updateCart(); // Update the cart display when opening
+            document.getElementById("cart-modal").style.display = 'block';
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = ''; // Clear previous items
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerText = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
+                
+                // Add "Remove" button
+                const removeButton = document.createElement('button');
+                removeButton.innerText = 'Remove';
+                removeButton.onclick = () => removeFromCart(item.id);
+                itemElement.appendChild(removeButton);
+
+                // Add "Add More" button
+                const addMoreButton = document.createElement('button');
+                addMoreButton.innerText = 'Add More';
+                addMoreButton.onclick = () => addToCart(item.id, item.name, item.price);
+                itemElement.appendChild(addMoreButton);
+
+                cartItemsContainer.appendChild(itemElement);
+                totalPrice += item.price * item.quantity; // Update total price
+            });
+
+            document.getElementById("total-price").innerText = `Total: Rs. ${totalPrice}`;
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart(); // Refresh the cart display
+        }
+
+        // Close cart modal
+        function closeCart() {
+            document.getElementById("cart-modal").style.display = 'none';
         }
     </script>
 </body>
