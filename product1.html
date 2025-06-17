@@ -2,200 +2,214 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Faresa Khan - Online Clothing Shop</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Black Chic Blazer - Faresa Khan</title>
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        /* GLOBAL RESET */
+        /* Base Reset */
         * {
-            margin: 0; padding: 0; box-sizing: border-box;
-        }
-        html { scroll-behavior: smooth; }
-        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
             font-family: 'Segoe UI', sans-serif;
-            background: #0a0a0a;
-            color: #eee;
-            overflow-x: hidden;
         }
-        /* BACKGROUND FLORAL ART */
-        body::before {
-            content: "";
-            position: fixed; top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: url('floral-bg.jpg') center/cover no-repeat;
-            opacity: 0.06;
-            filter: blur(6px) brightness(0.85);
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+
+        /* Background Tree Art */
+        .background {
+            background: url('https://images.unsplash.com/photo-1549887534-16447c18cb04?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.05;
             z-index: -1;
+            filter: blur(6px);
         }
-        /* SCROLL PROGRESS */
-        .scroll-progress {
-            position: fixed; top: 0; left: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            width: 0%;
-            z-index: 1000;
-        }
-        /* HEADER */
+
+        /* Header */
         header {
-            position: fixed; top: 0; left: 0;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            background: rgba(15, 15, 15, 0.7);
-            padding: 1rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 999;
-        }
-        header .logo {
-            font-size: 2rem; font-weight: bold;
-            color: #fff; text-decoration: none;
-            position: relative;
-        }
-        header .logo::after {
-            content: "";
-            position: absolute; left: 0; bottom: -4px;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transform: scaleX(0); transform-origin: left;
-            transition: transform .4s ease;
-        }
-        header .logo:hover::after { transform: scaleX(1); }
-        nav a {
-            margin-left: 2rem;
-            text-transform: uppercase;
-            color: #ccc; text-decoration: none;
-            position: relative; padding-bottom: 4px;
-        }
-        nav a::after {
-            content: "";
-            position: absolute; left: 50%; bottom: 0;
-            width: 0%; height: 2px;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transition: width .3s ease, left .3s ease;
-        }
-        nav a:hover::after {
-            width: 100%; left: 0;
-        }
-        nav a:hover { color: #fff; }
-        /* SECTION STYLING */
-        .section {
-            padding: 6rem 2rem;
-            min-height: 80vh;
-            display: flex; flex-direction: column;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
             backdrop-filter: blur(8px);
         }
-        .section.glass {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            margin: 4rem auto;
-            max-width: 850px;
-        }
-        /* HERO */
-        .hero {
-            display: flex; justify-content: center;
-            align-items: center; text-align: center;
-            height: 100vh;
-        }
-        .hero-content h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: neonFade 2s ease-in-out infinite alternate;
-        }
-        .hero-content p {
-            font-size: 1.3rem; color: #aaa; margin: 1.5rem 0;
-        }
-        /* BUTTONS */
-        .btn {
-            padding: .8rem 1.8rem;
-            border: 2px solid transparent;
-            background: transparent;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: color .3s;
-        }
-        .btn::before {
-            content: "";
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%) scaleY(0);
-            width: 120%; height: 100%;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transition: transform .4s ease;
-            transform-origin: top;
-            z-index: -1;
-        }
-        .btn:hover::before {
-            transform: translateX(-50%) scaleY(1);
-        }
-        .btn:hover { color: #000; }
-        /* PRODUCT GRID */
-        .product-grid {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 2.5rem;
-        }
-        .product-card {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            width: 280px;
-            padding: 1.5rem;
-            position: relative;
-            perspective: 1000px;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-        .product-card:hover {
-            transform: rotateY(8deg) translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-        }
-        /* PRODUCT INFO */
-        .product-card h3 {
-            margin: 1rem 0 .5rem;
-            font-size: 1.3rem;
-        }
-        .product-card p {
-            color: #ddd; margin-bottom: 1rem;
-        }
-        /* CONTACT FORM */
-        form {
-            width: 100%;
-            max-width: 500px; /* Center the form */
-            display: flex; flex-direction: column;
-            gap: 1rem;
-            margin: 0 auto; /* Center the form */
-        }
-        label {
-            color: #fff;
+
+        .logo {
+            font-size: 2rem;
             font-weight: bold;
+            color: #fff;
+            text-decoration: none;
         }
-        input, textarea {
-            padding: 1rem; border: none;
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .back-button {
+            padding: 0.5rem 1rem;
+            border: none;
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            border-radius: 10px;
-            resize: none;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
-        input::placeholder, textarea::placeholder {
-            color: #ccc;
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
-        /* FOOTER */
-        footer {
-            text-align: center;
+
+        .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        /* Product Page */
+        .product-page {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            padding: 6rem 2rem 2rem;
+        }
+
+        /* Image Slider */
+        .image-slider {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* Product Details */
+        .details {
+            max-width: 450px;
+        }
+
+        .details h1 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00e0ff;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .buy-button {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: linear-gradient(90deg, #ff0080, #00e0ff);
+            color: white;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .buy-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Notification */
+        .notification {
+            margin-top: 1rem;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff8c;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: none;
+            animation: fadeOut 2s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        /* Reviews */
+        .reviews {
+            max-width: 800px;
+            margin: 2rem auto;
             padding: 2rem;
-            background: #111;
-            color: #aaa;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        /* ANIMATIONS */
-        @keyframes neonFade {
-            from { text-shadow: 0 0 5px #ff0080, 0 0 10px #00e0ff; }
-            to { text-shadow: 0 0 20px #ff0080, 0 0 30px #00e0ff; }
+
+        .reviews h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
         }
-        /* CART MODAL */
+
+        .reviews p {
+            margin-bottom: 0.8rem;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* Cart Modal */
         .modal {
             display: none; /* Hidden by default */
             position: fixed;
@@ -207,6 +221,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.8);
         }
+
         .modal-content {
             background-color: #222;
             margin: 15% auto;
@@ -215,161 +230,193 @@
             width: 80%;
             max-width: 500px;
         }
+
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
         }
+
         .close:hover,
         .close:focus {
             color: #fff;
             text-decoration: none;
             cursor: pointer;
         }
+
+        .cart-item {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .cart-item button {
+            margin-left: 10px;
+            padding: 0.3rem 0.6rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
     </style>
 </head>
 <body>
-    <div class="scroll-progress" id="scroll-progress"></div>
-    <!-- Header / Navigation -->
+
+    <!-- Blurred Background -->
+    <div class="background"></div>
+
+    <!-- Navigation -->
     <header>
-        <a href="#top" class="logo animated-logo">Faresa Khan</a>
+        <a href="https://lalapapa32.github.io" class="logo">Faresa Khan</a>
         <nav>
             <a href="#about">About</a>
-            <a href="#products">Products</a>
             <a href="#contact">Contact</a>
-            <a href="javascript:void(0);" class="cart-icon" onclick="openModal()">🛒 <span id="cart-count">0</span></a>
         </nav>
+        <button class="back-button" onclick="window.location.href='http://lalapapa32.github.io'">Back</button>
+        <span class="cart-icon" onclick="openCart()">🛒</span>
     </header>
-    <!-- Hero Section -->
-    <section id="top" class="hero">
-        <div class="hero-content">
-            <h1>Unleash Your Style</h1>
-            <p>Minimal. Bold. Timeless.</p>
-            <a href="#products" class="btn">Shop Now</a>
-        </div>
-    </section>
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="floral-art"></div> <!-- Floral Art Background -->
-        <div class="about-content">
-            <h2 class="floating-heading">About Faresa Khan</h2>
-            <p> Faresa Khan is a modern fashion house blending the bold elegance of black and white with chic design. We believe fashion is more than just clothes — it's a voice. Every collection is hand-crafted with love, sophistication, and personality. </p>
-        </div>
-    </section>
-    <div class="section-separator"></div> <!-- Separator -->
+
     <!-- Product Section -->
-    <section id="products" class="section products">
-        <h2 class="floating-heading">Our Collection</h2>
-        <div class="product-grid">
-            <div class="product-card glass">
-                <img src="https://via.placeholder.com/300x400?text=Product+1" alt="Product 1" />
-                <h3>Black Chic Blazer</h3>
-                <p>Rs. 5,999</p>
-                <a href="product1.html" class="btn">Buy Now</a>
-            </div>
-            <div class="product-card glass">
-                <img src="https://via.placeholder.com/300x400?text=Product+2" alt="Product 2" />
-                <h3>White Elegance Dress</h3>
-                <p>Rs. 4,499</p>
-                <button onclick="addToCart('2', 'White Elegance Dress', 4499)">Buy Now</button>
-            </div>
-            <div class="product-card glass">
-                <img src="https://via.placeholder.com/300x400?text=Product+3" alt="Product 3" />
-                <h3>Monochrome Suit</h3>
-                <p>Rs. 6,999</p>
-                <button onclick="addToCart('3', 'Monochrome Suit', 6999)">Buy Now</button>
-            </div>
+    <main class="product-page">
+        <div class="image-slider">
+            <img id="slider-image" src="https://outfitters.com.pk/cdn/shop/files/F1028106623_1.jpg?v=1727935619" alt="Black Chic Blazer" />
+            <button class="arrow left" onclick="prevImage()">&#8592;</button>
+            <button class="arrow right" onclick="nextImage()">&#8594;</button>
         </div>
+        <div class="details">
+            <h1>Black Chic Blazer</h1>
+            <p class="price">Rs. 5,999</p>
+            <p class="description">
+                A statement piece carved in confidence.<br>
+                This Black Chic Blazer drapes elegance with attitude—crafted for the woman who walks in both shadows and spotlight.
+            </p>
+            <button class="buy-button" onclick="addToCart('1', 'Black Chic Blazer', 5999)">Buy Now</button>
+            <div id="notification" class="notification">Added to Cart</div>
+        </div>
+    </main>
+
+    <!-- Reviews -->
+    <section class="reviews">
+        <h2>Customer Reviews</h2>
+        <p>⭐⭐⭐⭐⭐ - “Absolutely stunning, fits like a dream!” – Areeba M.</p>
+        <p>⭐⭐⭐⭐ - “Elegant and comfortable. Perfect for formal dinners.” – Zara K.</p>
     </section>
-    <div class="section-separator"></div> <!-- Separator -->
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <h2 class="floating-heading">Contact Us</h2>
-        <p>Have questions? Want to collaborate? We’d love to hear from you.</p>
-        <form action="https://formspree.io/f/mblykllq" method="POST">
-            <label>Your email:</label>
-            <input type="email" name="email" required placeholder="Enter your email">
-            <label>Your message:</label>
-            <textarea name="message" required placeholder="Type your message here"></textarea>
-            <!-- Hidden redirect field -->
-            <input type="hidden" name="_next" value="https://lalapapa32.github.io" />
-            <button type="submit">Send</button>
-        </form>
-    </section>
+
     <!-- Cart Modal -->
     <div id="cart-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeCart()">&times;</span>
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
             <p id="total-price">Total: Rs. 0</p>
-            <button id="checkout">Checkout</button>
         </div>
     </div>
+
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Faresa Khan. All Rights Reserved.</p>
+        <p>&copy; 2025 Faresa Khan. All rights reserved.</p>
     </footer>
+
     <script>
-        // Scroll Progress Bar
-        const progress = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
-            const scroll = document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const percent = (scroll / height) * 100;
-            progress.style.width = percent + "%";
-        });
-        // Cart Functionality
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartCount = document.getElementById('cart-count');
-        const cartItemsContainer = document.getElementById('cart-items');
-        const totalPriceElement = document.getElementById('total-price');
-        // Function to update cart count
-        function updateCartCount() {
-            cartCount.innerText = cart.length;
+        const images = [
+            "https://outfitters.com.pk/cdn/shop/files/F1028106623_1.jpg?v=1727935619",
+            "https://outfitters.com.pk/cdn/shop/files/F0179101901_af68bb33-09e2-4ead-9f4e-7f8baa4bca17.jpg?v=1733222503",
+            "https://outfitters.com.pk/cdn/shop/files/F0351109625.jpg?v=1707806134"
+        ];
+
+        let current = 0;
+        const imgElement = document.getElementById("slider-image");
+        let cart = [];
+
+        function showImage(index) {
+            imgElement.style.opacity = 0;
+            setTimeout(() => {
+                imgElement.src = images[index];
+                imgElement.style.opacity = 1;
+            }, 200);
         }
-        // Function to display cart items
-        function displayCartItems() {
-            cartItemsContainer.innerHTML = '';
+
+        function nextImage() {
+            current = (current + 1) % images.length;
+            showImage(current);
+        }
+
+        function prevImage() {
+            current = (current - 1 + images.length) % images.length;
+            showImage(current);
+        }
+
+        // Add to cart notification
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1; // Increase quantity if item already exists
+            } else {
+                cart.push({ id, name, price, quantity: 1 }); // Add new item
+            }
+            updateCart(); // Update the cart display
+            const notify = document.getElementById("notification");
+            notify.style.display = "block";
+            notify.style.opacity = "1";
+
+            setTimeout(() => {
+                notify.style.opacity = "0";
+                setTimeout(() => notify.style.display = "none", 500);
+            }, 2000);
+        }
+
+        // Open cart modal
+        function openCart() {
+            updateCart(); // Update the cart display when opening
+            document.getElementById("cart-modal").style.display = 'block';
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = ''; // Clear previous items
             let totalPrice = 0;
+
             cart.forEach(item => {
                 const itemElement = document.createElement('div');
-                itemElement.innerHTML = `
-                    <h3>${item.name}</h3>
-                    <p>Price: Rs. ${item.price}</p>
-                    <button onclick="removeFromCart('${item.id}')">Remove</button>
-                `;
+                itemElement.className = 'cart-item';
+                itemElement.innerText = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
+                
+                // Add "Remove" button
+                const removeButton = document.createElement('button');
+                removeButton.innerText = 'Remove';
+                removeButton.onclick = () => removeFromCart(item.id);
+                itemElement.appendChild(removeButton);
+
+                // Add "Add More" button
+                const addMoreButton = document.createElement('button');
+                addMoreButton.innerText = 'Add More';
+                addMoreButton.onclick = () => addToCart(item.id, item.name, item.price);
+                itemElement.appendChild(addMoreButton);
+
                 cartItemsContainer.appendChild(itemElement);
-                totalPrice += item.price;
+                totalPrice += item.price * item.quantity; // Update total price
             });
-            totalPriceElement.innerText = `Total: Rs. ${totalPrice}`;
+
+            document.getElementById("total-price").innerText = `Total: Rs. ${totalPrice}`;
         }
-        // Function to add item to cart and open modal
-        function addToCart(id, name, price) {
-            cart.push({ id, name, price });
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            openModal(); // Open the cart modal after adding the item
-            displayCartItems(); // Display the updated cart items
-        }
-        // Function to remove item from cart
+
+        // Remove item from cart
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            displayCartItems();
+            updateCart(); // Refresh the cart display
         }
-        // Modal functions
-        function openModal() {
-            document.getElementById('cart-modal').style.display = 'block';
-            displayCartItems();
+
+        // Close cart modal
+        function closeCart() {
+            document.getElementById("cart-modal").style.display = 'none';
         }
-        function closeModal() {
-            document.getElementById('cart-modal').style.display = 'none';
-        }
-        // Initial setup
-        updateCartCount();
     </script>
 </body>
 </html>
