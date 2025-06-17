@@ -2,39 +2,283 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Black Chic Blazer | Faresa Khan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Chic Blazer - Faresa Khan</title>
+  <style>
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-  <!-- ✅ Link Product 1 CSS only -->
-  <link rel="stylesheet" href="product1.css"/>
+    body {
+      background-color: #0a0a0a;
+      color: #fff;
+    }
+
+    /* Background Tree Art */
+    .background {
+      background: url('https://images.unsplash.com/photo-1549887534-16447c18cb04?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0.05;
+      z-index: -1;
+      filter: blur(6px);
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #ccc;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    /* Product Page */
+    .product-page {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      padding: 6rem 2rem 2rem;
+    }
+
+    /* Image Slider */
+    .image-slider {
+      position: relative;
+      width: 350px;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .image-slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.5s ease;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.4rem 0.8rem;
+      z-index: 10;
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    /* Product Details */
+    .details {
+      max-width: 450px;
+    }
+
+    .details h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .price {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #00e0ff;
+    }
+
+    .description {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .buy-button {
+      padding: 0.8rem 2rem;
+      border: none;
+      background: linear-gradient(90deg, #ff0080, #00e0ff);
+      color: white;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .buy-button:hover {
+      opacity: 0.9;
+    }
+
+    /* Notification */
+    .notification {
+      margin-top: 1rem;
+      background: rgba(0, 255, 0, 0.1);
+      border: 1px solid #00ff8c;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: none;
+      animation: fadeOut 2s ease forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
+
+    /* Reviews */
+    .reviews {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .reviews h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .reviews p {
+      margin-bottom: 0.8rem;
+      color: #ccc;
+      font-style: italic;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- ✅ Product 1 HTML content -->
-  <nav class="navbar">
-    <div class="logo">Faresa Khan</div>
-    <ul class="nav-links">
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-      <li><a href="#">Cart</a></li>
-    </ul>
-  </nav>
 
-  <section class="product-hero">
-    <div class="slider-container">
-      <button class="arrow left">&#10094;</button>
-      <img id="product-image" src="https://outfitters.com.pk/cdn/shop/files/F0179101901_af68bb33-09e2-4ead-9f4e-7f8baa4bca17.jpg?v=1733222503" alt="Black Chic Blazer">
-      <button class="arrow right">&#10095;</button>
+  <!-- Blurred Background -->
+  <div class="background"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="logo">Faresa Khan</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#cart">Cart</a>
+    </nav>
+  </header>
+
+  <!-- Product Section -->
+  <main class="product-page">
+    <div class="image-slider">
+      <img id="slider-image" src="https://outfitters.com.pk/cdn/shop/files/F1028106623_1.jpg?v=1727935619" alt="Black Chic Blazer" />
+      <button class="arrow left" onclick="prevImage()">&#8592;</button>
+      <button class="arrow right" onclick="nextImage()">&#8594;</button>
     </div>
-    <div class="product-info">
+    <div class="details">
       <h1>Black Chic Blazer</h1>
-      <p class="tagline">A statement of elegance, power, and subtle rebellion.</p>
-      <p class="price">PKR 5,499</p>
-      <button id="buy-now">Buy Now</button>
-      <div class="notification" id="notification">Added to cart</div>
+      <p class="price">Rs. 5,999</p>
+      <p class="description">
+        A statement piece carved in confidence.<br>
+        This Black Chic Blazer drapes elegance with attitude—crafted for the woman who walks in both shadows and spotlight.
+      </p>
+      <button class="buy-button" onclick="addToCart()">Buy Now</button>
+      <div id="notification" class="notification">Added to Cart</div>
     </div>
+  </main>
+
+  <!-- Reviews -->
+  <section class="reviews">
+    <h2>Customer Reviews</h2>
+    <p>⭐⭐⭐⭐⭐ - “Absolutely stunning, fits like a dream!” – Areeba M.</p>
+    <p>⭐⭐⭐⭐ - “Elegant and comfortable. Perfect for formal dinners.” – Zara K.</p>
   </section>
 
-  <!-- ✅ Link Product 1 JavaScript only -->
-  <script src="product1.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Faresa Khan. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const images = [
+      "https://outfitters.com.pk/cdn/shop/files/F1028106623_1.jpg?v=1727935619",
+      "https://outfitters.com.pk/cdn/shop/files/F0179101901_af68bb33-09e2-4ead-9f4e-7f8baa4bca17.jpg?v=1733222503",
+      "https://outfitters.com.pk/cdn/shop/files/F0351109625.jpg?v=1707806134"
+    ];
+
+    let current = 0;
+    const imgElement = document.getElementById("slider-image");
+
+    function showImage(index) {
+      imgElement.style.opacity = 0;
+      setTimeout(() => {
+        imgElement.src = images[index];
+        imgElement.style.opacity = 1;
+      }, 200);
+    }
+
+    function nextImage() {
+      current = (current + 1) % images.length;
+      showImage(current);
+    }
+
+    function prevImage() {
+      current = (current - 1 + images.length) % images.length;
+      showImage(current);
+    }
+
+    // Add to cart notification
+    function addToCart() {
+      const notify = document.getElementById("notification");
+      notify.style.display = "block";
+      notify.style.opacity = "1";
+
+      setTimeout(() => {
+        notify.style.opacity = "0";
+        setTimeout(() => notify.style.display = "none", 500);
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
