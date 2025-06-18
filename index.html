@@ -361,19 +361,19 @@
                 <img src="https://i.ibb.co/ym7HcM3B/203500black-4.jpg" alt="Black Chic Blazer" />
                 <h3>Black Chic Blazer</h3>
                 <p>Rs. 5,999</p>
-                <button class="btn buy-now-btn" data-id="1" data-name="Black Chic Blazer" data-price="5999">Buy Now</button>
+                <a href="product1.html" class="btn">Buy Now</a>
             </div>
             <div class="product-card glass">
                 <img src="https://i.ibb.co/twJFky7d/il-fullxfull-3689273043-n026.jpg" alt="White Elegance Dress" />
                 <h3>White Elegance Dress</h3>
                 <p>Rs. 4,499</p>
-                <button class="btn buy-now-btn" data-id="2" data-name="White Elegance Dress" data-price="4499">Buy Now</button>
+                <a href="product2.html" class="btn">Buy Now</a>
             </div>
             <div class="product-card glass">
                 <img src="https://i.ibb.co/3qS9Nzn/blue-monochrome-outfit.jpg" alt="Monochrome Suit" />
                 <h3>Monochrome Suit</h3>
                 <p>Rs. 6,999</p>
-                <button class="btn buy-now-btn" data-id="3" data-name="Monochrome Suit" data-price="6999">Buy Now</button>
+                <a href="product3.html" class="btn">Buy Now</a>
             </div>
         </div>
     </section>
@@ -424,8 +424,8 @@
 
         // Update cart count in header
         function updateCartCount() {
-            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cart-count').textContent = cartCount;
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = count;
         }
 
         // Add product to cart
@@ -469,88 +469,4 @@
         // Open cart modal
         function openCart() {
             updateCartDisplay();
-            document.getElementById('cart-modal').style.display = 'block';
-        }
-
-        // Close cart modal
-        function closeCart() {
-            document.getElementById('cart-modal').style.display = 'none';
-        }
-
-        // Update cart modal display
-        function updateCartDisplay() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
-                document.getElementById('total-price').textContent = 'Total: Rs. 0';
-                return;
-            }
-
-            cart.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'cart-item';
-                itemDiv.style.marginBottom = '1rem';
-                itemDiv.style.color = '#fff';
-
-                const itemText = document.createElement('span');
-                itemText.textContent = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
-                itemDiv.appendChild(itemText);
-
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'Remove';
-                removeButton.style.marginLeft = '10px';
-                removeButton.onclick = () => {
-                    removeFromCart(item.id);
-                };
-                itemDiv.appendChild(removeButton);
-
-                const addButton = document.createElement('button');
-                addButton.textContent = 'Add More';
-                addButton.style.marginLeft = '10px';
-                addButton.onclick = () => {
-                    addToCart(item.id, item.name, item.price);
-                    updateCartDisplay();
-                };
-                itemDiv.appendChild(addButton);
-
-                cartItemsContainer.appendChild(itemDiv);
-                total += item.price * item.quantity;
-            });
-
-            document.getElementById('total-price').textContent = `Total: Rs. ${total}`;
-        }
-
-        // Remove item from cart
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            updateCartDisplay();
-        }
-
-        // Checkout button placeholder
-        function checkout() {
-            alert('Checkout functionality not implemented.');
-        }
-
-        // Add event listeners for Buy Now buttons
-        document.querySelectorAll('.buy-now-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const btn = e.currentTarget;
-                const id = btn.getAttribute('data-id');
-                const name = btn.getAttribute('data-name');
-                const price = parseInt(btn.getAttribute('data-price'), 10);
-                addToCart(id, name, price);
-            });
-        });
-
-        // Initialize cart count on page load
-        updateCartCount();
-
-    </script>
-</body>
-</html>
-
+           
