@@ -320,15 +320,18 @@
             const percent = (scroll / height) * 100;
             progress.style.width = percent + "%";
         });
+
         // Cart Functionality
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const cartCount = document.getElementById('cart-count');
         const cartItemsContainer = document.getElementById('cart-items');
         const totalPriceElement = document.getElementById('total-price');
+
         // Function to update cart count
         function updateCartCount() {
-            cartCount.innerText = cart.length;
+            cartCount.innerText = cart.reduce((total, item) => total + item.quantity, 0);
         }
+
         // Function to display cart items
         function displayCartItems() {
             cartItemsContainer.innerHTML = '';
@@ -337,39 +340,50 @@
                 const itemElement = document.createElement('div');
                 itemElement.innerHTML = `
                     <h3>${item.name}</h3>
-                    <p>Price: Rs. ${item.price}</p>
+                    <p>Price: Rs. ${item.price} x ${item.quantity}</p>
                     <button onclick="removeFromCart('${item.id}')">Remove</button>
                 `;
                 cartItemsContainer.appendChild(itemElement);
-                totalPrice += item.price;
+                totalPrice += item.price * item.quantity; // Update total price
             });
             totalPriceElement.innerText = `Total: Rs. ${totalPrice}`;
         }
+
         // Function to add item to cart and open modal
         function addToCart(id, name, price) {
-            cart.push({ id, name, price });
-            localStorage.setItem('cart', JSON.stringify(cart));
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1; // Increase quantity if item already exists
+            } else {
+                cart.push({ id, name, price, quantity: 1 }); // Add new item
+            }
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
             updateCartCount();
             openModal(); // Open the cart modal after adding the item
             displayCartItems(); // Display the updated cart items
         }
+
         // Function to remove item from cart
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
             updateCartCount();
             displayCartItems();
         }
+
         // Modal functions
         function openModal() {
             document.getElementById('cart-modal').style.display = 'block';
             displayCartItems();
         }
+
         function closeModal() {
             document.getElementById('cart-modal').style.display = 'none';
         }
+
         // Initial setup
         updateCartCount();
+        displayCartItems();
     </script>
 </body>
 </html>
