@@ -1,90 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faresa Khan - Online Clothing Shop</title>
     <style>
         /* GLOBAL RESET */
         * {
-            margin: 0; padding: 0; box-sizing: border-box;
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box;
         }
-        html { scroll-behavior: smooth; }
+        
+        html { 
+            scroll-behavior: smooth; 
+        }
+        
         body {
             font-family: 'Segoe UI', sans-serif;
             background: #0a0a0a;
             color: #eee;
             overflow-x: hidden;
         }
+        
         /* BACKGROUND FLORAL ART */
         body::before {
             content: "";
-            position: fixed; top: 0; left: 0;
-            width: 100vw; height: 100vh;
+            position: fixed; 
+            top: 0; 
+            left: 0;
+            width: 100vw; 
+            height: 100vh;
             background: url('floral-bg.jpg') center/cover no-repeat;
             opacity: 0.06;
             filter: blur(6px) brightness(0.85);
             z-index: -1;
         }
+        
         /* SCROLL PROGRESS */
         .scroll-progress {
-            position: fixed; top: 0; left: 0;
+            position: fixed; 
+            top: 0; 
+            left: 0;
             height: 4px;
             background: linear-gradient(90deg, #ff0080, #00e0ff);
             width: 0%;
             z-index: 1000;
         }
+        
         /* HEADER */
         header {
-            position: fixed; top: 0; left: 0;
+            position: fixed; 
+            top: 0; 
+            left: 0;
             width: 100%;
             backdrop-filter: blur(10px);
             background: rgba(15, 15, 15, 0.7);
             padding: 1rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
             z-index: 999;
         }
+        
         header .logo {
-            font-size: 2rem; font-weight: bold;
-            color: #fff; text-decoration: none;
+            font-size: 2rem; 
+            font-weight: bold;
+            color: #fff; 
+            text-decoration: none;
             position: relative;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 
+                         0 0 20px rgba(0, 255, 255, 0.5), 
+                         0 0 30px rgba(0, 255, 255, 0.5);
         }
+        
         header .logo::after {
             content: "";
-            position: absolute; left: 0; bottom: -4px;
-            width: 100%; height: 2px;
+            position: absolute; 
+            left: 0; 
+            bottom: -4px;
+            width: 100%; 
+            height: 2px;
             background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transform: scaleX(0); transform-origin: left;
+            transform: scaleX(0); 
+            transform-origin: left;
             transition: transform .4s ease;
         }
-        header .logo:hover::after { transform: scaleX(1); }
+        
+        header .logo:hover::after { 
+            transform: scaleX(1); 
+        }
+        
         nav a {
             margin-left: 2rem;
             text-transform: uppercase;
-            color: #ccc; text-decoration: none;
-            position: relative; padding-bottom: 4px;
+            color: #ccc; 
+            text-decoration: none;
+            position: relative; 
+            padding-bottom: 4px;
         }
+        
         nav a::after {
             content: "";
-            position: absolute; left: 50%; bottom: 0;
-            width: 0%; height: 2px;
+            position: absolute; 
+            left: 50%; 
+            bottom: 0;
+            width: 0%; 
+            height: 2px;
             background: linear-gradient(90deg, #ff0080, #00e0ff);
             transition: width .3s ease, left .3s ease;
         }
+        
         nav a:hover::after {
-            width: 100%; left: 0;
+            width: 100%; 
+            left: 0;
         }
-        nav a:hover { color: #fff; }
+        
+        nav a:hover { 
+            color: #fff; 
+        }
 
         /* SECTION STYLING */
         .section {
             padding: 6rem 2rem;
             min-height: 80vh;
-            display: flex; flex-direction: column;
+            display: flex; 
+            flex-direction: column;
             align-items: center;
             backdrop-filter: blur(8px);
         }
+        
         .section.glass {
             background: rgba(20, 20, 20, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -93,30 +138,45 @@
             max-width: 850px;
         }
 
-        /* PRODUCT IMAGE RESIZING */
+        /* PRODUCT GRID */
+        .product-grid {
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center;
+            gap: 2.5rem;
+        }
+        
+        .product-card {
+            background: rgba(20, 20, 20, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            width: 280px;
+            padding: 1.5rem;
+            position: relative;
+            perspective: 1000px;
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+        
+        .product-card:hover {
+            transform: rotateY(8deg) translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+        }
+        
         .product-card img {
             width: 100%;
             height: auto;
             border-radius: 10px;
             object-fit: cover;
         }
-
-        /* HERO */
-        .hero {
-            display: flex; justify-content: center;
-            align-items: center; text-align: center;
-            height: 100vh;
+        
+        .product-card h3 {
+            margin: 1rem 0 .5rem;
+            font-size: 1.3rem;
         }
-        .hero-content h1 {
-            font-size: 3.5rem;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: neonFade 2s ease-in-out infinite alternate;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.3);
-        }
-        .hero-content p {
-            font-size: 1.3rem; color: #aaa; margin: 1.5rem 0;
+        
+        .product-card p {
+            color: #ddd; 
+            margin-bottom: 1rem;
         }
 
         /* BUTTONS */
@@ -132,117 +192,62 @@
             position: relative;
             overflow: hidden;
             transition: color .3s;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.6);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 
+                         0 0 20px rgba(0, 255, 255, 0.6);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
+        
         .btn::before {
             content: "";
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%) scaleY(0);
-            width: 120%; height: 100%;
+            position: absolute; 
+            top: 0; 
+            left: 50%; 
+            transform: translateX(-50%) scaleY(0);
+            width: 120%; 
+            height: 100%;
             background: linear-gradient(90deg, #ff0080, #00e0ff);
             transition: transform .4s;
             transform-origin: top;
             z-index: -1;
         }
+        
         .btn:hover::before {
             transform: translateX(-50%) scaleY(1);
         }
-        .btn:hover { color: #000; }
-
-        /* PRODUCT GRID */
-        .product-grid {
-            display: flex; flex-wrap: wrap; justify-content: center;
-            gap: 2.5rem;
-        }
-        .product-card {
-            background: rgba(20, 20, 20, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            width: 280px;
-            padding: 1.5rem;
-            position: relative;
-            perspective: 1000px;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-        .product-card:hover {
-            transform: rotateY(8deg) translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
-        }
-        /* PRODUCT INFO */
-        .product-card h3 {
-            margin: 1rem 0 .5rem;
-            font-size: 1.3rem;
-        }
-        .product-card p {
-            color: #ddd; margin-bottom: 1rem;
+        
+        .btn:hover { 
+            color: #000; 
         }
 
-        /* CONTACT FORM */
-        form {
-            width: 100%;
-            max-width: 500px;
-            display: flex; flex-direction: column;
-            gap: 1rem;
-            margin: 0 auto;
-        }
-        label {
-            color: #fff;
-            font-weight: bold;
-        }
-        input, textarea {
-            padding: 1rem; border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border-radius: 10px;
-            resize: none;
-        }
-        input::placeholder, textarea::placeholder {
-            color: #ccc;
-        }
-        form button {
-            padding: 1rem 2rem;
-            border: 2px solid transparent;
-            background: transparent;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: color 0.3s ease;
-            font-size: 1.1rem;
-        }
-        form button::before {
-            content: "";
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%) scaleY(0);
-            width: 120%; height: 100%;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transition: transform .4s;
-            transform-origin: top;
-            z-index: -1;
-        }
-        form button:hover::before {
-            transform: translateX(-50%) scaleY(1);
-        }
-        form button:hover {
-            color: #000;
-        }
-
-        /* FOOTER */
-        footer {
+        /* HERO SECTION */
+        .hero {
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
             text-align: center;
-            padding: 2rem;
-            background: #111;
-            color: #aaa;
+            height: 100vh;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(90deg, #ff0080, #00e0ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: neonFade 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 
+                         0 0 40px rgba(0, 255, 255, 0.3), 
+                         0 0 60px rgba(0, 255, 255, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem; 
+            color: #aaa; 
+            margin: 1.5rem 0;
         }
 
-        /* ANIMATIONS */
-        @keyframes neonFade {
-            from { text-shadow: 0 0 5px #ff0080, 0 0 10px #00e0ff; }
-            to { text-shadow: 0 0 20px #ff0080, 0 0 30px #00e0ff; }
-        }
-
-        /* CART MODAL */
+        /* CART MODAL STYLES */
         .modal {
             display: none;
             position: fixed;
@@ -254,78 +259,93 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.8);
         }
+        
         .modal-content {
             background-color: #222;
-            margin: 15% auto;
-            padding: 20px;
+            margin: 10% auto;
+            padding: 25px;
             border: 1px solid #888;
-            width: 80%;
+            width: 90%;
             max-width: 500px;
+            border-radius: 15px;
+            position: relative;
         }
+        
         .close {
             color: #aaa;
-            float: right;
+            position: absolute;
+            right: 20px;
+            top: 10px;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
         }
+        
         .close:hover,
         .close:focus {
             color: #fff;
             text-decoration: none;
         }
-
+        
         #cart-count {
             background: #ff0080;
             border-radius: 50%;
-            padding: 0 8px;
+            padding: 0 6px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             vertical-align: super;
             margin-left: 4px;
         }
-
-        /* STYLE FOR CART BUTTONS */
-        #checkout, .modal button {
-            padding: .8rem 1.8rem;
-            border: 2px solid transparent;
-            background: transparent;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 600;
-            border-radius: 30px;
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cart-item button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: color .3s;
-            margin-top: 1rem;
+            transition: background 0.3s;
         }
-        #checkout::before, .modal button::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%) scaleY(0);
-            width: 120%;
-            height: 100%;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transition: transform .4s;
-            transform-origin: top;
-            z-index: -1;
+        
+        .cart-item button:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
-        #checkout:hover::before, .modal button:hover::before {
-            transform: translateX(-50%) scaleY(1);
-        }
-        #checkout:hover, .modal button:hover {
-            color: #000;
+        
+        /* ANIMATIONS */
+        @keyframes neonFade {
+            from { 
+                text-shadow: 0 0 5px #ff0080, 0 0 10px #00e0ff; 
+            }
+            to { 
+                text-shadow: 0 0 20px #ff0080, 0 0 30px #00e0ff; 
+            }
         }
     </style>
 </head>
 <body>
     <div class="scroll-progress" id="scroll-progress"></div>
+    
     <!-- Header / Navigation -->
     <header>
-        <a href="#top" class="logo animated-logo">Faresa Khan</a>
+        <a href="index.html" class="logo">Faresa Khan</a>
         <nav>
             <a href="#about">About</a>
             <a href="#products">Products</a>
@@ -346,50 +366,47 @@
     <!-- About Section -->
     <section id="about" class="section">
         <div class="about-content">
-            <h2 class="floating-heading">About Faresa Khan</h2>
-            <p> Faresa Khan is a modern fashion house blending the bold elegance of black and white with chic design. We believe fashion
-            speaks volumes without uttering a word.</p>
+            <h2>About Faresa Khan</h2>
+            <p>Faresa Khan is a modern fashion house blending the bold elegance of black and white with chic design. We believe fashion speaks volumes without uttering a word.</p>
         </div>
     </section>
-    <div class="section-separator"></div>
     
     <!-- Product Section -->
     <section id="products" class="section products">
-        <h2 class="floating-heading">Our Collection</h2>
+        <h2>Our Collection</h2>
         <div class="product-grid">
             <div class="product-card glass">
-                <img src="https://i.ibb.co/ym7HcM3B/203500black-4.jpg" alt="Black Chic Blazer" />
+                <img src="https://i.ibb.co/ym7HcM3B/203500black-4.jpg" alt="Black Chic Blazer">
                 <h3>Black Chic Blazer</h3>
                 <p>Rs. 5,999</p>
                 <a href="product1.html" class="btn">Buy Now</a>
             </div>
             <div class="product-card glass">
-                <img src="https://i.ibb.co/twJFky7d/il-fullxfull-3689273043-n026.jpg" alt="White Elegance Dress" />
+                <img src="https://i.ibb.co/twJFky7d/il-fullxfull-3689273043-n026.jpg" alt="White Elegance Dress">
                 <h3>White Elegance Dress</h3>
                 <p>Rs. 4,499</p>
                 <a href="product2.html" class="btn">Buy Now</a>
             </div>
             <div class="product-card glass">
-                <img src="https://i.ibb.co/3qS9Nzn/blue-monochrome-outfit.jpg" alt="Monochrome Suit" />
+                <img src="https://i.ibb.co/3qS9Nzn/blue-monochrome-outfit.jpg" alt="Monochrome Suit">
                 <h3>Monochrome Suit</h3>
                 <p>Rs. 6,999</p>
                 <a href="product3.html" class="btn">Buy Now</a>
             </div>
         </div>
     </section>
-    <div class="section-separator"></div>
     
     <!-- Contact Section -->
     <section id="contact" class="section contact">
-        <h2 class="floating-heading">Contact Us</h2>
-        <p>Have questions? Want to collaborate? We’d love to hear from you.</p>
+        <h2>Contact Us</h2>
+        <p>Have questions? Want to collaborate? We'd love to hear from you.</p>
         <form action="https://formspree.io/f/mblykllq" method="POST">
             <label>Your email:</label>
-            <input type="email" name="email" required placeholder="Enter your email" />
+            <input type="email" name="email" required placeholder="Enter your email">
             <label>Your message:</label>
             <textarea name="message" required placeholder="Type your message here"></textarea>
-            <input type="hidden" name="_next" value="https://lalapapa32.github.io" />
-            <button type="submit">Send</button>
+            <input type="hidden" name="_next" value="https://lalapapa32.github.io">
+            <button type="submit" class="btn">Send</button>
         </form>
     </section>
 
@@ -400,7 +417,7 @@
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
             <p id="total-price">Total: Rs. 0</p>
-            <button id="checkout" onclick="checkout()">Checkout</button>
+            <button id="checkout" class="btn" onclick="checkout()">Checkout</button>
         </div>
     </div>
     
@@ -410,63 +427,132 @@
     </footer>
 
     <script>
-        // Scroll Progress Bar
-        const progress = document.getElementById('scroll-progress');
-        window.addEventListener('scroll', () => {
+        // Cart system initialization
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // DOM Elements
+        const scrollProgress = document.getElementById('scroll-progress');
+        const cartCount = document.getElementById('cart-count');
+        const cartModal = document.getElementById('cart-modal');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total-price');
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            setupEventListeners();
+        });
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            // Scroll progress bar
+            window.addEventListener('scroll', updateScrollProgress);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === cartModal) {
+                    closeCart();
+                }
+            });
+        }
+        
+        function updateScrollProgress() {
             const scroll = document.documentElement.scrollTop || document.body.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrolled = (scroll / height) * 100;
-            progress.style.width = scrolled + '%';
-        });
-
-        // Cart data from localStorage or empty array
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+            scrollProgress.style.width = scrolled + '%';
+        }
+        
         // Update cart count in header
         function updateCartCount() {
             const count = cart.reduce((total, item) => total + item.quantity, 0);
-            document.getElementById('cart-count').textContent = count;
+            cartCount.textContent = count;
         }
-
-        // Add product to cart
-        function addToCart(id, name, price) {
-            const existingItem = cart.find(item => item.id === id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, name, price, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            showNotification(name + ' added to cart');
-        }
-
-        // Show a brief notification
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.textContent = message;
-            notification.style.position = 'fixed';
-            notification.style.bottom = '20px';
-            notification.style.right = '20px';
-            notification.style.background = '#00e0ff';
-            notification.style.color = '#000';
-            notification.style.padding = '1rem 1.5rem';
-            notification.style.borderRadius = '10px';
-            notification.style.fontWeight = 'bold';
-            notification.style.zIndex = '1100';
-            notification.style.boxShadow = '0 4px 10px rgba(0,224,255,0.5)';
-            notification.style.opacity = '1';
-            notification.style.transition = 'opacity 0.5s ease-in-out';
-            document.body.appendChild(notification);
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 500);
-            }, 2000);
-        }
-
+        
         // Open cart modal
         function openCart() {
             updateCartDisplay();
-           
+            cartModal.style.display = 'block';
+        }
+        
+        // Close cart modal
+        function closeCart() {
+            cartModal.style.display = 'none';
+        }
+        
+        // Display cart items in modal
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:#aaa;">Your cart is empty</p>';
+                totalPriceElement.textContent = 'Total: Rs. 0';
+                return;
+            }
+            
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                
+                itemElement.innerHTML = `
+                    <div>
+                        <strong>${item.name}</strong>
+                        <p>Rs. ${item.price} × ${item.quantity} = Rs. ${item.price * item.quantity}</p>
+                    </div>
+                    <div class="cart-item-controls">
+                        <button onclick="updateCartItem('${item.id}', -1)">−</button>
+                        <button onclick="updateCartItem('${item.id}', 1)">+</button>
+                        <button onclick="removeCartItem('${item.id}')">×</button>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(itemElement);
+                total += item.price * item.quantity;
+            });
+            
+            totalPriceElement.textContent = `Total: Rs. ${total}`;
+        }
+        
+        // Update cart item quantity
+        function updateCartItem(id, change) {
+            const item = cart.find(item => item.id === id);
+            
+            if (item) {
+                item.quantity += change;
+                
+                if (item.quantity < 1) {
+                    cart = cart.filter(item => item.id !== id);
+                }
+                
+                saveCart();
+            }
+        }
+        
+        // Remove item from cart
+        function removeCartItem(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+        }
+        
+        // Save cart to localStorage and update UI
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+        
+        // Checkout button
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            alert('Checkout functionality will be added soon!');
+            closeCart();
+        }
+    </script>
+</body>
+</html>
