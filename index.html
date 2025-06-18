@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Faresa Khan - Online Clothing Shop</title>
-    <link rel="stylesheet" href="styles.css"/>
     <style>
         /* GLOBAL RESET */
         * {
@@ -49,7 +48,7 @@
             font-size: 2rem; font-weight: bold;
             color: #fff; text-decoration: none;
             position: relative;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.5); /* Added lighting effect */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.5), 0 0 30px rgba(0, 255, 255, 0.5);
         }
         header .logo::after {
             content: "";
@@ -96,10 +95,10 @@
 
         /* PRODUCT IMAGE RESIZING */
         .product-card img {
-            width: 100%; /* Make the image take up the full width of the card */
-            height: auto; /* Maintain the aspect ratio */
-            border-radius: 10px; /* Optional: add rounded corners */
-            object-fit: cover; /* Ensure the image covers the available space without distortion */
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
 
         /* HERO */
@@ -114,7 +113,7 @@
             -webkit-background-clip: text;
             color: transparent;
             animation: neonFade 2s ease-in-out infinite alternate;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.3); /* Added lighting effect */
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3), 0 0 40px rgba(0, 255, 255, 0.3), 0 0 60px rgba(0, 255, 255, 0.3);
         }
         .hero-content p {
             font-size: 1.3rem; color: #aaa; margin: 1.5rem 0;
@@ -133,7 +132,7 @@
             position: relative;
             overflow: hidden;
             transition: color .3s;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.6); /* Added lighting effect */
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.6);
         }
         .btn::before {
             content: "";
@@ -176,13 +175,14 @@
         .product-card p {
             color: #ddd; margin-bottom: 1rem;
         }
+
         /* CONTACT FORM */
         form {
             width: 100%;
-            max-width: 500px; /* Center the form */
+            max-width: 500px;
             display: flex; flex-direction: column;
             gap: 1rem;
-            margin: 0 auto; /* Center the form */
+            margin: 0 auto;
         }
         label {
             color: #fff;
@@ -198,38 +198,34 @@
         input::placeholder, textarea::placeholder {
             color: #ccc;
         }
-        /* Updated button styles for the contact form */
         form button {
-            padding: 1rem 2rem; /* Increased padding for a larger button */
+            padding: 1rem 2rem;
             border: 2px solid transparent;
-            background: transparent; /* Transparent background */
-            color: #fff; /* Subtle text color */
+            background: transparent;
+            color: #fff;
             text-transform: uppercase;
             font-weight: 600;
             border-radius: 30px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            transition: color 0.3s ease; /* Transition for text color */
-            font-size: 1.1rem; /* Slightly larger font size */
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
         }
-
         form button::before {
             content: "";
             position: absolute; top: 0; left: 50%; transform: translateX(-50%) scaleY(0);
             width: 120%; height: 100%;
-            background: linear-gradient(90deg, #ff0080, #00e0ff); /* Gradient background */
-            transition: transform .4s; /* Transition for background scale */
+            background: linear-gradient(90deg, #ff0080, #00e0ff);
+            transition: transform .4s;
             transform-origin: top;
-            z-index: -1; /* Behind the text */
+            z-index: -1;
         }
-
         form button:hover::before {
-            transform: translateX(-50%) scaleY(1); /* Scale effect on hover */
+            transform: translateX(-50%) scaleY(1);
         }
-
         form button:hover {
-            color: #000; /* Change text color on hover */
+            color: #000;
         }
 
         /* FOOTER */
@@ -239,14 +235,16 @@
             background: #111;
             color: #aaa;
         }
+
         /* ANIMATIONS */
         @keyframes neonFade {
             from { text-shadow: 0 0 5px #ff0080, 0 0 10px #00e0ff; }
             to { text-shadow: 0 0 20px #ff0080, 0 0 30px #00e0ff; }
         }
+
         /* CART MODAL */
         .modal {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -269,13 +267,24 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
         .close:hover,
         .close:focus {
             color: #fff;
             text-decoration: none;
-            cursor: pointer;
         }
+
+        #cart-count {
+            background: #ff0080;
+            border-radius: 50%;
+            padding: 0 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            vertical-align: super;
+            margin-left: 4px;
+        }
+
         /* STYLE FOR CART BUTTONS */
         #checkout, .modal button {
             padding: .8rem 1.8rem;
@@ -291,7 +300,6 @@
             transition: color .3s;
             margin-top: 1rem;
         }
-
         #checkout::before, .modal button::before {
             content: "";
             position: absolute;
@@ -305,11 +313,9 @@
             transform-origin: top;
             z-index: -1;
         }
-
         #checkout:hover::before, .modal button:hover::before {
             transform: translateX(-50%) scaleY(1);
         }
-
         #checkout:hover, .modal button:hover {
             color: #000;
         }
@@ -324,9 +330,10 @@
             <a href="#about">About</a>
             <a href="#products">Products</a>
             <a href="#contact">Contact</a>
-            <a href="javascript:void(0);" class="cart-icon" onclick="openModal()">🛒 <span id="cart-count">0</span></a>
+            <a href="javascript:void(0);" class="cart-icon" onclick="openCart()">🛒<span id="cart-count">0</span></a>
         </nav>
     </header>
+    
     <!-- Hero Section -->
     <section id="top" class="hero">
         <div class="hero-content">
@@ -335,72 +342,215 @@
             <a href="#products" class="btn">Shop Now</a>
         </div>
     </section>
+    
     <!-- About Section -->
     <section id="about" class="section">
-        <div class="floral-art"></div> <!-- Floral Art Background -->
         <div class="about-content">
             <h2 class="floating-heading">About Faresa Khan</h2>
             <p> Faresa Khan is a modern fashion house blending the bold elegance of black and white with chic design. We believe fashion
- </p>
+            speaks volumes without uttering a word.</p>
         </div>
     </section>
-    <div class="section-separator"></div> <!-- Separator -->
+    <div class="section-separator"></div>
+    
     <!-- Product Section -->
     <section id="products" class="section products">
         <h2 class="floating-heading">Our Collection</h2>
         <div class="product-grid">
             <div class="product-card glass">
-                <img src="https://i.ibb.co/ym7HcM3B/203500black-4.jpg" alt="Product 1" />
+                <img src="https://i.ibb.co/ym7HcM3B/203500black-4.jpg" alt="Black Chic Blazer" />
                 <h3>Black Chic Blazer</h3>
                 <p>Rs. 5,999</p>
-                <a href="product1.html" class="btn">Buy Now</a>
+                <button class="btn buy-now-btn" data-id="1" data-name="Black Chic Blazer" data-price="5999">Buy Now</button>
             </div>
             <div class="product-card glass">
-                <img src="https://i.ibb.co/twJFky7d/il-fullxfull-3689273043-n026.jpg" alt="Product 2" />
+                <img src="https://i.ibb.co/twJFky7d/il-fullxfull-3689273043-n026.jpg" alt="White Elegance Dress" />
                 <h3>White Elegance Dress</h3>
                 <p>Rs. 4,499</p>
-                <a href="product2.html" class="btn">Buy Now</a>
+                <button class="btn buy-now-btn" data-id="2" data-name="White Elegance Dress" data-price="4499">Buy Now</button>
             </div>
             <div class="product-card glass">
-                <img src="https://i.ibb.co/3qS9Nzn/blue-monochrome-outfit.jpg" alt="Product 3" />
+                <img src="https://i.ibb.co/3qS9Nzn/blue-monochrome-outfit.jpg" alt="Monochrome Suit" />
                 <h3>Monochrome Suit</h3>
                 <p>Rs. 6,999</p>
-                <a href="product3.html" class="btn">Buy Now</a> <!-- Updated link -->
+                <button class="btn buy-now-btn" data-id="3" data-name="Monochrome Suit" data-price="6999">Buy Now</button>
             </div>
         </div>
     </section>
-    <div class="section-separator"></div> <!-- Separator -->
+    <div class="section-separator"></div>
+    
     <!-- Contact Section -->
     <section id="contact" class="section contact">
         <h2 class="floating-heading">Contact Us</h2>
         <p>Have questions? Want to collaborate? We’d love to hear from you.</p>
         <form action="https://formspree.io/f/mblykllq" method="POST">
             <label>Your email:</label>
-            <input type="email" name="email" required placeholder="Enter your email">
+            <input type="email" name="email" required placeholder="Enter your email" />
             <label>Your message:</label>
             <textarea name="message" required placeholder="Type your message here"></textarea>
-            <!-- Hidden redirect field -->
             <input type="hidden" name="_next" value="https://lalapapa32.github.io" />
             <button type="submit">Send</button>
         </form>
     </section>
+
     <!-- Cart Modal -->
     <div id="cart-modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeCart()">&times;</span>
             <h2>Your Cart</h2>
             <div id="cart-items"></div>
             <p id="total-price">Total: Rs. 0</p>
-            <button id="checkout">Checkout</button>
+            <button id="checkout" onclick="checkout()">Checkout</button>
         </div>
     </div>
+    
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Faresa Khan. All Rights Reserved.</p>
     </footer>
+
     <script>
         // Scroll Progress Bar
         const progress = document.getElementById('scroll-progress');
         window.addEventListener('scroll', () => {
-            const scroll = document.documentElement.scrollTop;
-            const height = document.document
+            const scroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scroll / height) * 100;
+            progress.style.width = scrolled + '%';
+        });
+
+        // Cart data from localStorage or empty array
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Update cart count in header
+        function updateCartCount() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        // Add product to cart
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification(name + ' added to cart');
+        }
+
+        // Show a brief notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.right = '20px';
+            notification.style.background = '#00e0ff';
+            notification.style.color = '#000';
+            notification.style.padding = '1rem 1.5rem';
+            notification.style.borderRadius = '10px';
+            notification.style.fontWeight = 'bold';
+            notification.style.zIndex = '1100';
+            notification.style.boxShadow = '0 4px 10px rgba(0,224,255,0.5)';
+            notification.style.opacity = '1';
+            notification.style.transition = 'opacity 0.5s ease-in-out';
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 500);
+            }, 2000);
+        }
+
+        // Open cart modal
+        function openCart() {
+            updateCartDisplay();
+            document.getElementById('cart-modal').style.display = 'block';
+        }
+
+        // Close cart modal
+        function closeCart() {
+            document.getElementById('cart-modal').style.display = 'none';
+        }
+
+        // Update cart modal display
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                document.getElementById('total-price').textContent = 'Total: Rs. 0';
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.style.marginBottom = '1rem';
+                itemDiv.style.color = '#fff';
+
+                const itemText = document.createElement('span');
+                itemText.textContent = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
+                itemDiv.appendChild(itemText);
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Remove';
+                removeButton.style.marginLeft = '10px';
+                removeButton.onclick = () => {
+                    removeFromCart(item.id);
+                };
+                itemDiv.appendChild(removeButton);
+
+                const addButton = document.createElement('button');
+                addButton.textContent = 'Add More';
+                addButton.style.marginLeft = '10px';
+                addButton.onclick = () => {
+                    addToCart(item.id, item.name, item.price);
+                    updateCartDisplay();
+                };
+                itemDiv.appendChild(addButton);
+
+                cartItemsContainer.appendChild(itemDiv);
+                total += item.price * item.quantity;
+            });
+
+            document.getElementById('total-price').textContent = `Total: Rs. ${total}`;
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        // Checkout button placeholder
+        function checkout() {
+            alert('Checkout functionality not implemented.');
+        }
+
+        // Add event listeners for Buy Now buttons
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const btn = e.currentTarget;
+                const id = btn.getAttribute('data-id');
+                const name = btn.getAttribute('data-name');
+                const price = parseInt(btn.getAttribute('data-price'), 10);
+                addToCart(id, name, price);
+            });
+        });
+
+        // Initialize cart count on page load
+        updateCartCount();
+
+    </script>
+</body>
+</html>
+
