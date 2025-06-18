@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Monochrome Suit - Faresa Khan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
+
+        /* Background Tree Art */
+        .background {
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f294ac-d106-42d0-a094-7fca033b3989.png') no-repeat center center fixed;
+            background-size: cover;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.05;
+            z-index: -1;
+            filter: blur(6px);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Neon glow behind the logo */
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 150%;
+            background: linear-gradient(90deg, #ff0080, #00e0ff);
+            border-radius: 10px;
+            filter: blur(12px);
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .back-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        /* Product Page */
+        .product-page {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            padding: 6rem 2rem 2rem;
+        }
+
+        /* Image Slider */
+        .image-slider {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        /* Product Details */
+        .details {
+            max-width: 450px;
+        }
+
+        .details h1 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00e0ff;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .buy-button {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: linear-gradient(90deg, #ff0080, #00e0ff);
+            color: white;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .buy-button:hover {
+            opacity: 0.9;
+        }
+
+        /* Notification */
+        .notification {
+            margin-top: 1rem;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff8c;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: none;
+            animation: fadeOut 2s ease forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        /* Reviews */
+        .reviews {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .reviews h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .reviews p {
+            margin-bottom: 0.8rem;
+            color: #ccc;
+            font-style: italic;
+        }
+
+        /* Cart Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background-color: #222;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .cart-item button {
+            margin-left: 10px;
+            padding: 0.3rem 0.6rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .cart-item button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Blurred Background -->
+    <div class="background"></div>
+
+    <!-- Navigation -->
+    <header>
+        <a href="https://lalapapa32.github.io" class="logo">Faresa Khan</a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="back-button" onclick="window.location.href='http://lalapapa32.github.io'">Back</button>
+        <span class="cart-icon" onclick="openCart()">🛒</span>
+    </header>
+
+    <!-- Product Section -->
+    <main class="product-page">
+        <div class="image-slider">
+            <img id="slider-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ad1b809-1d32-43bf-a389-550a458cde5f.png" alt="Monochrome Suit image 1 showing a stylish black and white outfit on mannequin" />
+            <button class="arrow left" onclick="prevImage()">&#8592;</button>
+            <button class="arrow right" onclick="nextImage()">&#8594;</button>
+        </div>
+        <div class="details">
+            <h1>Monochrome Suit</h1>
+            <p class="price">Rs. 6,999</p>
+            <p class="description">
+                A chic monochrome suit combining modern style<br>
+                with timeless elegance.<br>
+                Designed for confidence and sophistication.
+            </p>
+            <button class="buy-button" onclick="addToCart('3', 'Monochrome Suit', 6999)">Buy Now</button>
+            <div id="notification" class="notification">Added to Cart</div>
+        </div>
+    </main>
+
+    <!-- Reviews -->
+    <section class="reviews">
+        <h2>Customer Reviews</h2>
+        <p>⭐⭐⭐⭐⭐ - “Absolutely love the sleek and modern look!” – Amina R.</p>
+        <p>⭐⭐⭐⭐ - “Perfect fit and versatile style for many occasions.” – Omar H.</p>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCart()">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <p id="total-price">Total: Rs. 0</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Faresa Khan. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const images = [
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/41a096d3-4713-4ee1-b929-d292dce1c6fd.png",
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/abdbb139-703a-4e2a-8e29-35b5864b6fc1.png",
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/723eff2a-a69b-4928-a4de-dfbc31e9abfb.png"
+        ];
+
+        let current = 0;
+        const imgElement = document.getElementById("slider-image");
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function showImage(index) {
+            imgElement.style.opacity = 0;
+            setTimeout(() => {
+                imgElement.src = images[index];
+                imgElement.style.opacity = 1;
+            }, 200);
+        }
+
+        function nextImage() {
+            current = (current + 1) % images.length;
+            showImage(current);
+        }
+
+        function prevImage() {
+            current = (current - 1 + images.length) % images.length;
+            showImage(current);
+        }
+
+        // Add to cart notification
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1; // Increase quantity if item already exists
+            } else {
+                cart.push({ id, name, price, quantity: 1 }); // Add new item
+            }
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
+            updateCart(); // Update the cart display
+            const notify = document.getElementById("notification");
+            notify.style.display = "block";
+            notify.style.opacity = "1";
+
+            setTimeout(() => {
+                notify.style.opacity = "0";
+                setTimeout(() => notify.style.display = "none", 500);
+            }, 2000);
+        }
+
+        // Open cart modal
+        function openCart() {
+            updateCart(); // Update the cart display when opening
+            document.getElementById("cart-modal").style.display = 'block';
+        }
+
+        // Update cart display
+        function updateCart() {
+            const cartItemsContainer = document.getElementById("cart-items");
+            cartItemsContainer.innerHTML = ''; // Clear previous items
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerText = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
+                
+                // Add "Remove" button
+                const removeButton = document.createElement('button');
+                removeButton.innerText = 'Remove';
+                removeButton.onclick = () => removeFromCart(item.id);
+                itemElement.appendChild(removeButton);
+
+                // Add "Add More" button
+                const addMoreButton = document.createElement('button');
+                addMoreButton.innerText = 'Add More';
+                addMoreButton.onclick = () => addToCart(item.id, item.name, item.price);
+                itemElement.appendChild(addMoreButton);
+
+                cartItemsContainer.appendChild(itemElement);
+                totalPrice += item.price * item.quantity; // Update total price
+            });
+
+            document.getElementById("total-price").innerText = `Total: Rs. ${totalPrice}`;
+        }
+
+        // Remove item from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
+            updateCart(); // Refresh the cart display
+        }
+
+        // Close cart modal
+        function closeCart() {
+            document.getElementById("cart-modal").style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+
