@@ -332,7 +332,7 @@
 
         let current = 0;
         const imgElement = document.getElementById("slider-image");
-        let cart = [];
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         function showImage(index) {
             imgElement.style.opacity = 0;
@@ -360,6 +360,7 @@
             } else {
                 cart.push({ id, name, price, quantity: 1 }); // Add new item
             }
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
             updateCart(); // Update the cart display
             const notify = document.getElementById("notification");
             notify.style.display = "block";
@@ -410,6 +411,7 @@
         // Remove item from cart
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
             updateCart(); // Refresh the cart display
         }
 
