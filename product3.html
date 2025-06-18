@@ -22,7 +22,7 @@
 
         /* Background Tree Art */
         .background {
-            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f294ac-d106-42d0-a094-7fca033b3989.png') no-repeat center center fixed;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/94f29904-67d7-4293-bdbd-065d0717fa7b.png') no-repeat center center fixed;
             background-size: cover;
             position: fixed;
             top: 0; left: 0;
@@ -38,37 +38,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(15, 15, 15, 0.7);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
         }
 
         .logo {
             font-size: 2rem;
             font-weight: bold;
             color: #fff;
-            text-decoration: none;
             position: relative;
+            text-shadow:
+              0 0 10px rgba(0, 224, 255, 0.7),
+              0 0 20px rgba(0, 224, 255, 0.5),
+              0 0 30px rgba(0, 224, 255, 0.3);
             z-index: 1;
         }
 
-        /* Neon glow behind the logo */
-        .logo::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 150%;
+        .logo::after {
+            content: "";
+            position: absolute; 
+            left: 0; 
+            bottom: -4px;
+            width: 100%; 
+            height: 2px;
             background: linear-gradient(90deg, #ff0080, #00e0ff);
-            border-radius: 10px;
-            filter: blur(12px);
+            transform: scaleX(0); 
+            transform-origin: left;
+            transition: transform 0.4s ease;
             z-index: -1;
-            opacity: 0.8;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
         }
 
         nav a {
@@ -303,7 +308,7 @@
     <!-- Product Section -->
     <main class="product-page">
         <div class="image-slider">
-            <img id="slider-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ad1b809-1d32-43bf-a389-550a458cde5f.png" alt="Monochrome Suit image 1 showing a stylish black and white outfit on mannequin" />
+            <img id="slider-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/94f29904-67d7-4293-bdbd-065d0717fa7b.png" alt="Monochrome Suit image 1 showing a stylish black and white outfit on mannequin" />
             <button class="arrow left" onclick="prevImage()">&#8592;</button>
             <button class="arrow right" onclick="nextImage()">&#8594;</button>
         </div>
@@ -344,9 +349,9 @@
 
     <script>
         const images = [
-            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/41a096d3-4713-4ee1-b929-d292dce1c6fd.png",
-            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/abdbb139-703a-4e2a-8e29-35b5864b6fc1.png",
-            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/723eff2a-a69b-4928-a4de-dfbc31e9abfb.png"
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8c3b4862-0951-457e-820f-e6774bd57346.png",
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/89d7514e-4f7e-4e6f-8943-64e63ad651b6.png",
+            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7580fc21-44f3-47f1-9171-08fe9e45ab52.png"
         ];
 
         let current = 0;
@@ -441,4 +446,3 @@
     </script>
 </body>
 </html>
-
