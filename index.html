@@ -338,6 +338,63 @@
                 text-shadow: 0 0 20px #ff0080, 0 0 30px #00e0ff; 
             }
         }
+
+        /* UPDATED CONTACT FORM STYLES */
+        .contact-form {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #ccc;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1.5rem;
+            background: rgba(15, 15, 15, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #00e0ff;
+            box-shadow: 0 0 10px rgba(0, 224, 255, 0.3);
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form .btn {
+            width: 100%;
+            margin-top: 1rem;
+            background: linear-gradient(to right, #ff0080, #00e0ff);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-form .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 224, 255, 0.4);
+        }
+        
     </style>
 </head>
 <body>
@@ -345,7 +402,7 @@
     
     <!-- Header / Navigation -->
     <header>
-        <a href="index.html" class="logo">Faresa Khan</a>
+        <a href="index.html", class="logo">Faresa Khan</a>
         <nav>
             <a href="#about">About</a>
             <a href="#products">Products</a>
@@ -359,7 +416,7 @@
         <div class="hero-content">
             <h1>Unleash Your Style</h1>
             <p>Minimal. Bold. Timeless.</p>
-            <a href="#products" class="btn">Shop Now</a>
+            <a href="#products", class="btn">Shop Now</a>
         </div>
     </section>
     
@@ -372,46 +429,50 @@
     </section>
     
     <!-- Product Section -->
-    <section id="products" class="section products">
+    <section id="products", class="section products">
         <h2>Our Collection</h2>
         <div class="product-grid">
             <div class="product-card glass">
                 <img src="https://i.ibb.co/ym7HcM3B/203500black-4.jpg" alt="Black Chic Blazer">
                 <h3>Black Chic Blazer</h3>
                 <p>Rs. 5,999</p>
-                <a href="product1.html" class="btn">Buy Now</a>
+                <a href="product1.html", class="btn">Buy Now</a>
             </div>
             <div class="product-card glass">
                 <img src="https://i.ibb.co/twJFky7d/il-fullxfull-3689273043-n026.jpg" alt="White Elegance Dress">
                 <h3>White Elegance Dress</h3>
                 <p>Rs. 4,499</p>
-                <a href="product2.html" class="btn">Buy Now</a>
+                <a href="product2.html", class="btn">Buy Now</a>
             </div>
             <div class="product-card glass">
                 <img src="https://i.ibb.co/3qS9Nzn/blue-monochrome-outfit.jpg" alt="Monochrome Suit">
                 <h3>Monochrome Suit</h3>
                 <p>Rs. 6,999</p>
-                <a href="product3.html" class="btn">Buy Now</a>
+                <a href="product3.html", class="btn">Buy Now</a>
             </div>
         </div>
     </section>
     
     <!-- Contact Section -->
-    <section id="contact" class="section contact">
+    <section id="contact", class="section contact">
         <h2>Contact Us</h2>
         <p>Have questions? Want to collaborate? We'd love to hear from you.</p>
-        <form action="https://formspree.io/f/mblykllq" method="POST">
-            <label>Your email:</label>
-            <input type="email" name="email" required placeholder="Enter your email">
-            <label>Your message:</label>
-            <textarea name="message" required placeholder="Type your message here"></textarea>
+        <form action="https://formspree.io/f/mblykllq" method="POST" class="contact-form">
+            <label for="email">Your email:</label>
+            <input type="email" name="email" required placeholder="Enter your nicer email"
+                   id="email">
+            
+            <label for="message">Your message:</label>
+            <textarea name="message" required placeholder="Type your thoughtful message here"
+                      id="message"></textarea>
+            
             <input type="hidden" name="_next" value="https://lalapapa32.github.io">
-            <button type="submit" class="btn">Send</button>
+            <button type="submit" class="btn">Send Message</button>
         </form>
     </section>
 
     <!-- Cart Modal -->
-    <div id="cart-modal" class="modal">
+    <div id="cart-modal", class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeCart()">&times;</span>
             <h2>Your Cart</h2>
@@ -512,7 +573,7 @@
                 total += item.price * item.quantity;
             });
             
-            totalPriceElement.textContent = Total: Rs. ${total};
+            totalPriceElement.textContent = `Total: Rs. ${total}`;
         }
         
         // Update cart item quantity
