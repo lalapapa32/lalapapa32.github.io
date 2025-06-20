@@ -20,7 +20,6 @@
             color: #fff;
         }
 
-        /* Background Tree Art */
         .background {
             background: url('https://images.unsplash.com/photo-1549887534-16447c18cb04?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
             background-size: cover;
@@ -33,7 +32,6 @@
             filter: blur(6px);
         }
 
-        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -86,7 +84,6 @@
             margin-left: 20px;
         }
 
-        /* Product Page */
         .product-page {
             display: flex;
             flex-wrap: wrap;
@@ -95,7 +92,6 @@
             padding: 6rem 2rem 2rem;
         }
 
-        /* Image Slider */
         .image-slider {
             position: relative;
             width: 350px;
@@ -133,7 +129,6 @@
             right: 10px;
         }
 
-        /* Product Details */
         .details {
             max-width: 450px;
         }
@@ -170,7 +165,6 @@
             opacity: 0.9;
         }
 
-        /* Notification */
         .notification {
             margin-top: 1rem;
             background: rgba(0, 255, 0, 0.1);
@@ -187,7 +181,6 @@
             100% { opacity: 0; display: none; }
         }
 
-        /* Reviews */
         .reviews {
             max-width: 800px;
             margin: 2rem auto;
@@ -209,9 +202,8 @@
             font-style: italic;
         }
 
-        /* Cart Modal */
         .modal {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -229,6 +221,7 @@
             border: 1px solid #888;
             width: 80%;
             max-width: 500px;
+            border-radius: 10px;
         }
 
         .close {
@@ -250,28 +243,30 @@
             color: #fff;
         }
 
-        .cart-item button {
+        .cart-controls {
+            display: inline-flex;
+            gap: 6px;
             margin-left: 10px;
-            padding: 0.3rem 0.6rem;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s ease;
         }
 
-        .cart-item button:hover {
-            background: rgba(255, 255, 255, 0.2);
+        .cart-controls button {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .cart-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
         }
     </style>
 </head>
 <body>
-
-    <!-- Blurred Background -->
     <div class="background"></div>
-
-    <!-- Navigation -->
     <header>
         <a href="https://lalapapa32.github.io" class="logo">Faresa Khan</a>
         <nav>
@@ -282,7 +277,6 @@
         <span class="cart-icon" onclick="openCart()">🛒</span>
     </header>
 
-    <!-- Product Section -->
     <main class="product-page">
         <div class="image-slider">
             <img id="slider-image" src="https://outfitters.com.pk/cdn/shop/files/F1028106623_1.jpg?v=1727935619" alt="Black Chic Blazer" />
@@ -301,14 +295,12 @@
         </div>
     </main>
 
-    <!-- Reviews -->
     <section class="reviews">
         <h2>Customer Reviews</h2>
         <p>⭐⭐⭐⭐⭐ - “Absolutely stunning, fits like a dream!” – Areeba M.</p>
         <p>⭐⭐⭐⭐ - “Elegant and comfortable. Perfect for formal dinners.” – Zara K.</p>
     </section>
 
-    <!-- Cart Modal -->
     <div id="cart-modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeCart()">&times;</span>
@@ -318,7 +310,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Faresa Khan. All rights reserved.</p>
     </footer>
@@ -352,16 +343,15 @@
             showImage(current);
         }
 
-        // Add to cart notification
         function addToCart(id, name, price) {
             const existingItem = cart.find(item => item.id === id);
             if (existingItem) {
-                existingItem.quantity += 1; // Increase quantity if item already exists
+                existingItem.quantity += 1;
             } else {
-                cart.push({ id, name, price, quantity: 1 }); // Add new item
+                cart.push({ id, name, price, quantity: 1 });
             }
-            localStorage.setItem('cart', JSON.stringify(cart)); // Save cart to localStorage
-            updateCart(); // Update the cart display
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
             const notify = document.getElementById("notification");
             notify.style.display = "block";
             notify.style.opacity = "1";
@@ -372,50 +362,66 @@
             }, 2000);
         }
 
-        // Open cart modal
+        function decreaseQuantity(id) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.quantity -= 1;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(i => i.id !== id);
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCart();
+            }
+        }
+
         function openCart() {
-            updateCart(); // Update the cart display when opening
+            updateCart();
             document.getElementById("cart-modal").style.display = 'block';
         }
 
-        // Update cart display
         function updateCart() {
             const cartItemsContainer = document.getElementById("cart-items");
-            cartItemsContainer.innerHTML = ''; // Clear previous items
+            cartItemsContainer.innerHTML = '';
             let totalPrice = 0;
 
             cart.forEach(item => {
                 const itemElement = document.createElement('div');
                 itemElement.className = 'cart-item';
-                itemElement.innerText = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
-                
-                // Add "Remove" button
-                const removeButton = document.createElement('button');
-                removeButton.innerText = 'Remove';
-                removeButton.onclick = () => removeFromCart(item.id);
-                itemElement.appendChild(removeButton);
+                itemElement.innerHTML = `<strong>${item.name}</strong><br>Rs. ${item.price} × ${item.quantity} = Rs. ${item.price * item.quantity}`;
 
-                // Add "Add More" button
-                const addMoreButton = document.createElement('button');
-                addMoreButton.innerText = 'Add More';
-                addMoreButton.onclick = () => addToCart(item.id, item.name, item.price);
-                itemElement.appendChild(addMoreButton);
+                const controls = document.createElement('div');
+                controls.className = 'cart-controls';
 
+                const minusBtn = document.createElement('button');
+                minusBtn.innerText = '−';
+                minusBtn.onclick = () => decreaseQuantity(item.id);
+                controls.appendChild(minusBtn);
+
+                const plusBtn = document.createElement('button');
+                plusBtn.innerText = '+';
+                plusBtn.onclick = () => addToCart(item.id, item.name, item.price);
+                controls.appendChild(plusBtn);
+
+                const removeBtn = document.createElement('button');
+                removeBtn.innerText = '×';
+                removeBtn.onclick = () => removeFromCart(item.id);
+                controls.appendChild(removeBtn);
+
+                itemElement.appendChild(controls);
                 cartItemsContainer.appendChild(itemElement);
-                totalPrice += item.price * item.quantity; // Update total price
+
+                totalPrice += item.price * item.quantity;
             });
 
             document.getElementById("total-price").innerText = `Total: Rs. ${totalPrice}`;
         }
 
-        // Remove item from cart
         function removeFromCart(id) {
             cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart)); // Update localStorage
-            updateCart(); // Refresh the cart display
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCart();
         }
 
-        // Close cart modal
         function closeCart() {
             document.getElementById("cart-modal").style.display = 'none';
         }
