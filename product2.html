@@ -1,441 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>White Elegance Dress - Faresa Khan</title>
-    <link rel="stylesheet" href="styles.css" />
-    <style>
-        /* Base Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            font-family: 'Segoe UI', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>White Elegance Dress – Faresa Khan</title>
+  <style>
+    /* RESET & GLOBAL */
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; font-family:'Segoe UI',sans-serif; }
+    body {
+      background:#0a0a0a; color:#eee; overflow-x:hidden; position:relative;
+    }
+    body::before {
+      content:""; position:fixed; inset:0;
+      background:url('https://images.unsplash.com/photo-1549887534-4c1f8c62f169?auto=format&fit=crop&w=1350&q=80')
+        center/cover no-repeat fixed;
+      filter:blur(6px) brightness(0.8); opacity:0.05; z-index:-1;
+    }
+    header {
+      position:fixed; top:0; left:0; width:100%;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:1rem 2rem; background:rgba(10,10,10,0.8);
+      backdrop-filter:blur(10px); z-index:1000;
+    }
+    .logo {
+      color:#fff; text-decoration:none; font-size:1.8rem; font-weight:bold;
+      text-shadow:0 0 10px cyan;
+    }
+    nav a {
+      color:#ccc; margin-left:1.5rem; text-decoration:none;
+      transition:color .3s;
+    }
+    nav a:hover { color:#fff; }
 
-        body {
-            background-color: #0a0a0a;
-            color: #fff;
-        }
+    .product-page {
+      display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start;
+      gap:3rem; padding:8rem 2rem 4rem; max-width:1000px; margin:0 auto;
+    }
+    .image-slider {
+      position:relative; width:350px; height:500px;
+      border-radius:12px; overflow:hidden;
+      box-shadow:0 0 20px rgba(255,255,255,0.1);
+    }
+    .product-img {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; opacity:0; transition:opacity .6s ease;
+    }
+    .product-img.active { opacity:1; }
+    .prev, .next {
+      position:absolute; top:50%; transform:translateY(-50%);
+      background:rgba(255,255,255,0.1); border:none; color:#fff;
+      font-size:2rem; padding:.4rem .8rem; border-radius:50%;
+      cursor:pointer; transition:background .3s;
+    }
+    .prev:hover, .next:hover { background:rgba(255,255,255,0.3); }
+    .prev { left:10px; } .next { right:10px; }
 
-        /* Background Tree Art */
-        .background {
-            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2e28ed47-184b-4260-9976-d27647afd0f8.png') no-repeat center center fixed;
-            background-size: cover;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            opacity: 0.05;
-            z-index: -1;
-            filter: blur(6px);
-        }
+    .product-details {
+      max-width:450px; color:#eee;
+    }
+    .product-details h1 {
+      font-size:2.2rem; margin-bottom:.5rem;
+    }
+    .price {
+      font-size:1.3rem; color:#0ff; margin-bottom:1rem;
+    }
+    .description {
+      line-height:1.6; margin-bottom:1.5rem; color:#ccc;
+    }
+    .buy-btn {
+      padding:.8rem 2rem;
+      background:linear-gradient(90deg,#ff0080,#00e0ff);
+      border:none; border-radius:30px;
+      color:#000; font-weight:bold; cursor:pointer;
+      transition:filter .3s;
+    }
+    .buy-btn:hover { filter:brightness(1.1); }
 
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(15, 15, 15, 0.7);
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
+    /* CART + CHECKOUT MODAL */
+    .modal {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,0.85);
+      z-index:2000; justify-content:center; align-items:center;
+    }
+    .modal-content {
+      background:rgba(30,30,30,0.95); padding:2.5rem; border-radius:15px;
+      width:90%; max-width:500px; color:#fff; position:relative;
+      box-shadow:0 0 20px rgba(0,255,255,0.2);
+    }
+    .close {
+      position:absolute; top:12px; right:20px;
+      font-size:1.5rem; color:#aaa; cursor:pointer;
+      transition:color .3s;
+    }
+    .close:hover { color:#fff; }
+    .modal-step { display:none; }
+    .modal-step.active { display:block; }
 
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
-            position: relative;
-            text-shadow:
-              0 0 10px rgba(0, 224, 255, 0.7),
-              0 0 20px rgba(0, 224, 255, 0.5),
-              0 0 30px rgba(0, 224, 255, 0.3);
-            z-index: 1;
-        }
+    .cart-items .cart-item {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:.8rem;
+    }
+    .qty-controls {
+      display:flex; align-items:center; gap:.5rem;
+    }
+    .qty-btn {
+      background:rgba(255,255,255,0.1);
+      border:none; color:#fff; width:28px; height:28px;
+      border-radius:50%; font-size:1.2rem; cursor:pointer;
+      transition:background .3s;
+    }
+    .qty-btn:hover { background:rgba(255,255,255,0.2); }
 
-        .logo::after {
-            content: "";
-            position: absolute; 
-            left: 0; 
-            bottom: -4px;
-            width: 100%; 
-            height: 2px;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            transform: scaleX(0); 
-            transform-origin: left;
-            transition: transform 0.4s ease;
-            z-index: -1;
-        }
+    .modal-footer {
+      display:flex; gap:1rem; margin-top:1.5rem;
+    }
+    .modal-footer .btn {
+      flex:1; padding:.8rem 1rem; text-align:center;
+    }
 
-        .logo:hover::after {
-            transform: scaleX(1);
-        }
+    /* CHECKOUT FORM */
+    .checkout-form label {
+      display:block; margin:.8rem 0 .3rem; color:#ccc;
+    }
+    .checkout-form input, .checkout-form textarea {
+      width:100%; padding:.8rem; border:none; border-radius:8px;
+      background:rgba(255,255,255,0.1); color:#fff;
+    }
 
-        nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #ccc;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #fff;
-        }
-
-        .back-button {
-            padding: 0.5rem 1rem;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .back-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .cart-icon {
-            font-size: 1.5rem;
-            color: #fff;
-            cursor: pointer;
-            margin-left: 20px;
-        }
-
-        /* Product Page */
-        .product-page {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 3rem;
-            padding: 6rem 2rem 2rem;
-        }
-
-        /* Image Slider */
-        .image-slider {
-            position: relative;
-            width: 350px;
-            height: 500px;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .image-slider img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.5s ease;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0.4rem 0.8rem;
-            z-index: 10;
-        }
-
-        .arrow.left {
-            left: 10px;
-        }
-
-        .arrow.right {
-            right: 10px;
-        }
-
-        /* Product Details */
-        .details {
-            max-width: 450px;
-        }
-
-        .details h1 {
-            font-size: 2.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #00e0ff;
-        }
-
-        .description {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .buy-button {
-            padding: 0.8rem 2rem;
-            border: none;
-            background: linear-gradient(90deg, #ff0080, #00e0ff);
-            color: white;
-            font-size: 1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .buy-button:hover {
-            opacity: 0.9;
-        }
-
-        /* Notification */
-        .notification {
-            margin-top: 1rem;
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid #00ff8c;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: none;
-            animation: fadeOut 2s ease forwards;
-        }
-
-        @keyframes fadeOut {
-            0% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; display: none; }
-        }
-
-        /* Reviews */
-        .reviews {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .reviews h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .reviews p {
-            margin-bottom: 0.8rem;
-            color: #ccc;
-            font-style: italic;
-        }
-
-        /* Cart Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .modal-content {
-            background-color: #222;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #fff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .cart-item {
-            margin-bottom: 1rem;
-            color: #fff;
-        }
-
-        .cart-item button {
-            margin-left: 10px;
-            padding: 0.3rem 0.6rem;
-            border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background 0.3s ease;
-        }
-
-        .cart-item button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-    </style>
+    footer {
+      text-align:center; padding:2rem; background:#111; color:#aaa; margin-top:2rem;
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Blurred Background -->
-    <div class="background"></div>
+  <header>
+    <a href="index.html" class="logo">Faresa Khan</a>
+    <nav>
+      <a href="index.html#about">About</a>
+      <a href="index.html#products">Products</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="javascript:void(0)" onclick="openCart()">🛒 <span id="cart-count">0</span></a>
+    </nav>
+  </header>
 
-    <!-- Navigation -->
-    <header>
-        <a href="https://lalapapa32.github.io" class="logo">Faresa Khan</a>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <button class="back-button" onclick="window.location.href='http://lalapapa32.github.io'">Back</button>
-        <span class="cart-icon" onclick="openCart()">🛒</span>
-    </header>
-
-    <!-- Product Section -->
-    <main class="product-page">
-        <div class="image-slider">
-            <img id="slider-image" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d18f2abf-7c51-43c4-99a4-7a8a0a6a5240.png" alt="White Elegance Dress image 1 showing elegant white dress on mannequin" />
-            <button class="arrow left" onclick="prevImage()">&#8592;</button>
-            <button class="arrow right" onclick="nextImage()">&#8594;</button>
-        </div>
-        <div class="details">
-            <h1>White Elegance Dress</h1>
-            <p class="price">Rs. 4,499</p>
-            <p class="description">
-                Embrace sophistication with the White Elegance Dress,<br>
-                crafted for timeless beauty and graceful moments.<br>
-                Perfect for evening soirees and elegant affairs.
-            </p>
-            <button class="buy-button" onclick="addToCart('2', 'White Elegance Dress', 4499)">Buy Now</button>
-            <div id="notification" class="notification">Added to Cart</div>
-        </div>
-    </main>
-
-    <!-- Reviews -->
-    <section class="reviews">
-        <h2>Customer Reviews</h2>
-        <p>⭐⭐⭐⭐⭐ - “A flawless design that made my night unforgettable.” – Fatima S.</p>
-        <p>⭐⭐⭐⭐ - “Elegant, comfortable, and stunningly beautiful.” – Sana J.</p>
-    </section>
-
-    <!-- Cart Modal -->
-    <div id="cart-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeCart()">&times;</span>
-            <h2>Your Cart</h2>
-            <div id="cart-items"></div>
-            <p id="total-price">Total: Rs. 0</p>
-        </div>
+  <div class="product-page">
+    <div class="image-slider">
+      <img src="https://via.placeholder.com/350x500?text=White+Elegance+1"
+           class="product-img active" alt="White Elegance Dress">
+      <img src="https://via.placeholder.com/350x500?text=White+Elegance+2"
+           class="product-img" alt="">
+      <img src="https://via.placeholder.com/350x500?text=White+Elegance+3"
+           class="product-img" alt="">
+      <button class="prev" onclick="prevImage()">&#10094;</button>
+      <button class="next" onclick="nextImage()">&#10095;</button>
     </div>
+    <div class="product-details">
+      <h1>White Elegance Dress</h1>
+      <p class="price">Rs. 4,499</p>
+      <p class="description">
+        A timeless white dress crafted for elegance and comfort. Perfect for
+        both day events and evening soirées.
+      </p>
+      <button class="buy-btn"
+              onclick="addToCart('2','White Elegance Dress',4499)">
+        Add to Cart
+      </button>
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Faresa Khan. All rights reserved.</p>
-    </footer>
+  <!-- CART + CHECKOUT MODAL -->
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeCart()">&times;</span>
 
-    <script>
-        const images = [
-            "https://placehold.co/350x500/7c3aed/ffffff?text=White+Elegance+Dress+Image+1",
-            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3e9bb5da-9bff-4dd4-9b9f-16e5efc407d7.png",
-            "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/27ce01e4-a091-41bc-aa3c-fd789bb267e3.png"
-        ];
+      <!-- STEP 1: Cart Summary -->
+      <div id="step-cart" class="modal-step active">
+        <h2>Your Cart</h2>
+        <div class="cart-items" id="cart-items"><p>No items in cart.</p></div>
+        <p id="total-price">Total: Rs. 0</p>
+        <div class="modal-footer">
+          <button class="btn" onclick="goToCheckout()">Checkout</button>
+          <button class="btn" onclick="closeCart()">Back to Shop</button>
+        </div>
+      </div>
 
-        let current = 0;
-        const imgElement = document.getElementById("slider-image");
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      <!-- STEP 2: Checkout Form -->
+      <div id="step-checkout" class="modal-step">
+        <h2>Checkout</h2>
+        <form class="checkout-form" onsubmit="submitOrder(event)">
+          <label for="name">Name</label>
+          <input type="text" id="name" required placeholder="Full Name">
+          <label for="email">Email</label>
+          <input type="email" id="email" required placeholder="you@example.com">
+          <label for="address">Address</label>
+          <textarea id="address" required placeholder="Shipping Address"></textarea>
+          <div class="modal-footer">
+            <button type="button" class="btn" onclick="backToCart()">Back to Cart</button>
+            <button type="submit" class="btn">Submit Order</button>
+          </div>
+        </form>
+      </div>
 
-        function showImage(index) {
-            imgElement.style.opacity = 0;
-            setTimeout(() => {
-                imgElement.src = images[index];
-                imgElement.style.opacity = 1;
-            }, 200);
-        }
+    </div>
+  </div>
 
-        function nextImage() {
-            current = (current + 1) % images.length;
-            showImage(current);
-        }
+  <footer>
+    &copy; 2025 Faresa Khan. All Rights Reserved.
+  </footer>
 
-        function prevImage() {
-            current = (current - 1 + images.length) % images.length;
-            showImage(current);
-        }
+  <script>
+    // Slider
+    const imgs = document.querySelectorAll('.product-img');
+    let idx = 0;
+    function showImage(i) {
+      imgs.forEach(img=>img.classList.remove('active'));
+      imgs[i].classList.add('active');
+    }
+    function nextImage() { idx=(idx+1)%imgs.length; showImage(idx); }
+    function prevImage() { idx=(idx-1+imgs.length)%imgs.length; showImage(idx); }
 
-        function addToCart(id, name, price) {
-            const existingItem = cart.find(item => item.id === id);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ id, name, price, quantity: 1 });
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-            const notify = document.getElementById("notification");
-            notify.style.display = "block";
-            notify.style.opacity = "1";
+    // Cart & Checkout with Qty
+    let cart = JSON.parse(localStorage.getItem('cart'))||[];
+    const cartCount = document.getElementById('cart-count');
+    const cartModal = document.getElementById('cart-modal');
+    const stepCart = document.getElementById('step-cart');
+    const stepCheckout = document.getElementById('step-checkout');
+    const cartItemsEl = document.getElementById('cart-items');
+    const totalPriceEl = document.getElementById('total-price');
 
-            setTimeout(() => {
-                notify.style.opacity = "0";
-                setTimeout(() => notify.style.display = "none", 500);
-            }, 2000);
-        }
-
-        function openCart() {
-            updateCart();
-            document.getElementById("cart-modal").style.display = 'block';
-        }
-
-        function updateCart() {
-            const cartItemsContainer = document.getElementById("cart-items");
-            cartItemsContainer.innerHTML = '';
-            let totalPrice = 0;
-
-            cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'cart-item';
-                itemElement.innerText = `${item.name} - Rs. ${item.price} x ${item.quantity}`;
-
-                const removeButton = document.createElement('button');
-                removeButton.innerText = 'Remove';
-                removeButton.onclick = () => removeFromCart(item.id);
-                itemElement.appendChild(removeButton);
-
-                const addMoreButton = document.createElement('button');
-                addMoreButton.innerText = 'Add More';
-                addMoreButton.onclick = () => addToCart(item.id, item.name, item.price);
-                itemElement.appendChild(addMoreButton);
-
-                cartItemsContainer.appendChild(itemElement);
-                totalPrice += item.price * item.quantity;
-            });
-
-            document.getElementById("total-price").innerText = `Total: Rs. ${totalPrice}`;
-        }
-
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCart();
-        }
-
-        function closeCart() {
-            document.getElementById("cart-modal").style.display = 'none';
-        }
-    </script>
+    function saveCart() {
+      localStorage.setItem('cart',JSON.stringify(cart));
+      cartCount.innerText = cart.reduce((sum,i)=>sum+i.quantity,0);
+    }
+    function renderCart() {
+      cartItemsEl.innerHTML='';
+      let sum=0;
+      if(!cart.length){
+        cartItemsEl.innerHTML='<p>No items in cart.</p>';
+      } else {
+        cart.forEach((item,ix)=>{
+          const div=document.createElement('div');
+          div.className='cart-item';
+          div.innerHTML=`
+            <span>${item.name} — Rs. ${item.price*item.quantity}</span>
+            <div class="qty-controls">
+              <button class="qty-btn" onclick="updateQuantity(${ix},-1)">−</button>
+              <span>${item.quantity}</span>
+              <button class="qty-btn" onclick="updateQuantity(${ix},1)">+</button>
+            </div>`;
+          cartItemsEl.appendChild(div);
+          sum+=item.price*item.quantity;
+        });
+      }
+      totalPriceEl.innerText=Total: Rs. ${sum};
+      saveCart();
+    }
+    function addToCart(id,name,price) {
+      const ex=cart.find(i=>i.id===id);
+      if(ex) ex.quantity++; else cart.push({id,name,price,quantity:1});
+      saveCart(); openCart();
+    }
+    function updateQuantity(i,delta) {
+      cart[i].quantity+=delta;
+      if(cart[i].quantity<1) cart.splice(i,1);
+      renderCart();
+    }
+    function openCart(){
+      cartModal.style.display='flex';
+      showStep('cart');
+      renderCart();
+    }
+    function closeCart(){ cartModal.style.display='none'; }
+    function showStep(step){
+      stepCart.classList.toggle('active',step==='cart');
+      stepCheckout.classList.toggle('active',step==='checkout');
+    }
+    function goToCheckout(){ showStep('checkout'); }
+    function backToCart(){ showStep('cart'); }
+    function submitOrder(e){
+      e.preventDefault();
+      const name=document.getElementById('name').value;
+      alert(Thank you, ${name}! Your order has been placed.);
+      cart=[]; saveCart(); closeCart();
+    }
+    // init
+    saveCart();
+  </script>
 </body>
 </html>
