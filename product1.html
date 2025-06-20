@@ -1,275 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Black Chic Blazer - Faresa Khan</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-      font-family: 'Segoe UI', sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Black Chic Blazer - Faresa Khan</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* Base Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-    body {
-      background-color: #0a0a0a;
-      color: #fff;
-    }
+        body {
+            background-color: #0a0a0a;
+            color: #fff;
+        }
 
-    .background {
-      background: url('https://images.unsplash.com/photo-1549887534-16447c18cb04?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-      background-size: cover;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      opacity: 0.05;
-      z-index: -1;
-      filter: blur(6px);
-    }
+        .background {
+            background: url('https://images.unsplash.com/photo-1549887534-16447c18cb04?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 0.05;
+            z-index: -1;
+            filter: blur(6px);
+        }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.6);
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(8px);
-    }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
 
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #fff;
-      text-decoration: none;
-    }
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
 
-    nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #ccc;
-      transition: color 0.3s ease;
-    }
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
 
-    nav a:hover {
-      color: #fff;
-    }
+        nav a:hover {
+            color: #fff;
+        }
 
-    .back-button {
-      padding: 0.5rem 1rem;
-      border: none;
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+        .back-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
 
-    .back-button:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
-    .cart-icon {
-      font-size: 1.5rem;
-      color: #fff;
-      cursor: pointer;
-      margin-left: 20px;
-      animation-duration: 0.5s;
-    }
+        .cart-icon {
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 20px;
+        }
 
-    .pulse {
-      animation: pulse 0.6s ease-in-out;
-    }
+        .product-page {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            padding: 6rem 2rem 2rem;
+        }
 
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-      100% { transform: scale(1); }
-    }
+        .image-slider {
+            position: relative;
+            width: 350px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
 
-    .product-page {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 3rem;
-      padding: 6rem 2rem 2rem;
-    }
+        .image-slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
 
-    .image-slider {
-      position: relative;
-      width: 350px;
-      height: 500px;
-      overflow: hidden;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.4rem 0.8rem;
+            z-index: 10;
+        }
 
-    .image-slider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: opacity 0.5s ease;
-    }
+        .arrow.left {
+            left: 10px;
+        }
 
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 0.4rem 0.8rem;
-      z-index: 10;
-    }
+        .arrow.right {
+            right: 10px;
+        }
 
-    .arrow.left {
-      left: 10px;
-    }
+        .details {
+            max-width: 450px;
+        }
 
-    .arrow.right {
-      right: 10px;
-    }
+        .details h1 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
 
-    .details {
-      max-width: 450px;
-    }
+        .price {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00e0ff;
+        }
 
-    .details h1 {
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
-    }
+        .description {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
 
-    .price {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-      color: #00e0ff;
-    }
+        .buy-button {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: linear-gradient(90deg, #ff0080, #00e0ff);
+            color: white;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
 
-    .description {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
+        .buy-button:hover {
+            opacity: 0.9;
+        }
 
-    .buy-button {
-      padding: 0.8rem 2rem;
-      border: none;
-      background: linear-gradient(90deg, #ff0080, #00e0ff);
-      color: white;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
+        .notification {
+            margin-top: 1rem;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff8c;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: none;
+            animation: fadeOut 2s ease forwards;
+        }
 
-    .buy-button:hover {
-      opacity: 0.9;
-    }
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
 
-    .notification {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #00ffae;
-      color: #000;
-      padding: 0.7rem 1.2rem;
-      border-radius: 8px;
-      display: none;
-      font-weight: bold;
-      animation: slideFade 2s ease forwards;
-    }
+        .reviews {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-    @keyframes slideFade {
-      0% { opacity: 0; transform: translateY(30px); }
-      10% { opacity: 1; transform: translateY(0); }
-      80% { opacity: 1; }
-      100% { opacity: 0; transform: translateY(-10px); }
-    }
+        .reviews h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
 
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      right: 0;
-      top: 0;
-      width: 350px;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(20, 20, 20, 0.98);
-      transform: translateX(100%);
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
+        .reviews p {
+            margin-bottom: 0.8rem;
+            color: #ccc;
+            font-style: italic;
+        }
 
-    .modal.show {
-      display: block;
-      transform: translateX(0);
-    }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
 
-    .modal-content {
-      padding: 20px;
-      color: #fff;
-    }
+        .modal-content {
+            background-color: #222;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+        }
 
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
-    .cart-item {
-      margin-bottom: 1rem;
-      color: #fff;
-    }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-    .cart-controls {
-      display: inline-flex;
-      gap: 6px;
-      margin-left: 10px;
-    }
+        .cart-item {
+            margin-bottom: 1rem;
+            color: #fff;
+        }
 
-    .cart-controls button {
-      background-color: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 5px;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
+        .cart-controls {
+            display: inline-flex;
+            gap: 6px;
+            margin-left: 10px;
+        }
 
-    .cart-controls button:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
-  </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const cartIcon = document.getElementById("cart-icon");
-      const cartModal = document.getElementById("cart-modal");
+        .cart-controls button {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: none;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
 
-      if (cartIcon && cartModal) {
-        cartIcon.addEventListener('click', () => {
-          cartModal.classList.toggle('show');
-        });
-      }
-    });
-  </script>
-</head>
-<body>
-<!-- Continue body content... -->
-</body>
-</html>
+        .cart-controls button:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+    </style>
 </head>
 <body>
     <div class="background"></div>
