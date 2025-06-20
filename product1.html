@@ -253,6 +253,23 @@
       background-color: rgba(255, 255, 255, 0.3);
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cartIcon = document.getElementById("cart-icon");
+      const cartModal = document.getElementById("cart-modal");
+
+      if (cartIcon && cartModal) {
+        cartIcon.addEventListener('click', () => {
+          cartModal.classList.toggle('show');
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+<!-- Continue body content... -->
+</body>
+</html>
 </head>
 <body>
     <div class="background"></div>
