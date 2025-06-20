@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>White Elegance Dress – Faresa Khan</title>
+  <title>Black Chic Blazer – Faresa Khan</title>
   <style>
     /* RESET & GLOBAL */
     * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; font-family:'Segoe UI',sans-serif; }
     body {
-      background:#0a0a0a; color:#eee; overflow-x:hidden; position:relative;
+      background:#0a0a0a;
+      color:#eee;
+      overflow-x:hidden;
+      position: relative;
     }
     body::before {
       content:""; position:fixed; inset:0;
       background:url('https://images.unsplash.com/photo-1549887534-4c1f8c62f169?auto=format&fit=crop&w=1350&q=80')
         center/cover no-repeat fixed;
-      filter:blur(6px) brightness(0.8); opacity:0.05; z-index:-1;
+      filter:blur(6px) brightness(0.8);
+      opacity:0.05; z-index:-1;
     }
     header {
       position:fixed; top:0; left:0; width:100%;
@@ -23,7 +27,8 @@
       backdrop-filter:blur(10px); z-index:1000;
     }
     .logo {
-      color:#fff; text-decoration:none; font-size:1.8rem; font-weight:bold;
+      color:#fff; text-decoration:none;
+      font-size:1.8rem; font-weight:bold;
       text-shadow:0 0 10px cyan;
     }
     nav a {
@@ -33,8 +38,10 @@
     nav a:hover { color:#fff; }
 
     .product-page {
-      display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-start;
-      gap:3rem; padding:8rem 2rem 4rem; max-width:1000px; margin:0 auto;
+      display:flex; flex-wrap:wrap;
+      justify-content:center; align-items:flex-start;
+      gap:3rem; padding:8rem 2rem 4rem;
+      max-width:1000px; margin:0 auto;
     }
     .image-slider {
       position:relative; width:350px; height:500px;
@@ -42,15 +49,18 @@
       box-shadow:0 0 20px rgba(255,255,255,0.1);
     }
     .product-img {
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; opacity:0; transition:opacity .6s ease;
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; opacity:0;
+      transition:opacity .6s ease;
     }
     .product-img.active { opacity:1; }
     .prev, .next {
       position:absolute; top:50%; transform:translateY(-50%);
       background:rgba(255,255,255,0.1); border:none; color:#fff;
-      font-size:2rem; padding:.4rem .8rem; border-radius:50%;
-      cursor:pointer; transition:background .3s;
+      font-size:2rem; padding:.4rem .8rem;
+      border-radius:50%; cursor:pointer;
+      transition:background .3s;
     }
     .prev:hover, .next:hover { background:rgba(255,255,255,0.3); }
     .prev { left:10px; } .next { right:10px; }
@@ -65,48 +75,52 @@
       font-size:1.3rem; color:#0ff; margin-bottom:1rem;
     }
     .description {
-      line-height:1.6; margin-bottom:1.5rem; color:#ccc;
+      line-height:1.6; margin-bottom:1.5rem;
+      color:#ccc;
     }
     .buy-btn {
       padding:.8rem 2rem;
       background:linear-gradient(90deg,#ff0080,#00e0ff);
       border:none; border-radius:30px;
-      color:#000; font-weight:bold; cursor:pointer;
-      transition:filter .3s;
+      color:#000; font-weight:bold;
+      cursor:pointer; transition:filter .3s;
     }
     .buy-btn:hover { filter:brightness(1.1); }
 
-    /* CART + CHECKOUT MODAL */
+    /* CART MODAL + STEPS */
     .modal {
       display:none; position:fixed; inset:0;
       background:rgba(0,0,0,0.85);
       z-index:2000; justify-content:center; align-items:center;
     }
     .modal-content {
-      background:rgba(30,30,30,0.95); padding:2.5rem; border-radius:15px;
-      width:90%; max-width:500px; color:#fff; position:relative;
+      background:rgba(30,30,30,0.95);
+      padding:2.5rem; border-radius:15px;
+      width:90%; max-width:500px;
+      color:#fff; position:relative;
       box-shadow:0 0 20px rgba(0,255,255,0.2);
     }
     .close {
       position:absolute; top:12px; right:20px;
-      font-size:1.5rem; color:#aaa; cursor:pointer;
+      font-size:1.5rem; cursor:pointer; color:#aaa;
       transition:color .3s;
     }
     .close:hover { color:#fff; }
+
     .modal-step { display:none; }
     .modal-step.active { display:block; }
 
     .cart-items .cart-item {
       display:flex; justify-content:space-between; align-items:center;
-      margin-bottom:.8rem;
+      margin-bottom:0.8rem;
     }
     .qty-controls {
-      display:flex; align-items:center; gap:.5rem;
+      display:flex; align-items:center; gap:0.5rem;
     }
     .qty-btn {
-      background:rgba(255,255,255,0.1);
-      border:none; color:#fff; width:28px; height:28px;
-      border-radius:50%; font-size:1.2rem; cursor:pointer;
+      background:rgba(255,255,255,0.1); border:none;
+      color:#fff; width:30px; height:30px; border-radius:50%;
+      font-size:1.2rem; line-height:1; cursor:pointer;
       transition:background .3s;
     }
     .qty-btn:hover { background:rgba(255,255,255,0.2); }
@@ -127,13 +141,16 @@
       background:rgba(255,255,255,0.1); color:#fff;
     }
 
+    /* FOOTER */
     footer {
-      text-align:center; padding:2rem; background:#111; color:#aaa; margin-top:2rem;
+      text-align:center; padding:2rem;
+      background:#111; color:#aaa; margin-top:2rem;
     }
   </style>
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <a href="index.html" class="logo">Faresa Khan</a>
     <nav>
@@ -144,26 +161,24 @@
     </nav>
   </header>
 
+  <!-- PRODUCT DISPLAY -->
   <div class="product-page">
     <div class="image-slider">
-      <img src="https://via.placeholder.com/350x500?text=White+Elegance+1"
-           class="product-img active" alt="White Elegance Dress">
-      <img src="https://via.placeholder.com/350x500?text=White+Elegance+2"
-           class="product-img" alt="">
-      <img src="https://via.placeholder.com/350x500?text=White+Elegance+3"
-           class="product-img" alt="">
+      <img src="https://outfitters.com.pk/cdn/shop/files/F1028106623_1.jpg?v=1727935619" class="product-img active" alt="Black Chic Blazer">
+      <img src="https://outfitters.com.pk/cdn/shop/files/F0179101901_af68bb33-09e2-4ead-9f4e-7f8baa4bca17.jpg?v=1733222503" class="product-img" alt="">
+      <img src="https://outfitters.com.pk/cdn/shop/files/F0351109625.jpg?v=1707806134" class="product-img" alt="">
       <button class="prev" onclick="prevImage()">&#10094;</button>
       <button class="next" onclick="nextImage()">&#10095;</button>
     </div>
     <div class="product-details">
-      <h1>White Elegance Dress</h1>
-      <p class="price">Rs. 4,499</p>
+      <h1>Black Chic Blazer</h1>
+      <p class="price">Rs. 5,999</p>
       <p class="description">
-        A timeless white dress crafted for elegance and comfort. Perfect for
-        both day events and evening soirées.
+        A modern take on timeless fashion. This chic black blazer elevates your
+        style with sleek cuts and minimal elegance—perfect from boardroom to
+        evening city lights.
       </p>
-      <button class="buy-btn"
-              onclick="addToCart('2','White Elegance Dress',4499)">
+      <button class="buy-btn" onclick="addToCart('1','Black Chic Blazer',5999)">
         Add to Cart
       </button>
     </div>
@@ -177,7 +192,9 @@
       <!-- STEP 1: Cart Summary -->
       <div id="step-cart" class="modal-step active">
         <h2>Your Cart</h2>
-        <div class="cart-items" id="cart-items"><p>No items in cart.</p></div>
+        <div class="cart-items" id="cart-items">
+          <p>No items in cart.</p>
+        </div>
         <p id="total-price">Total: Rs. 0</p>
         <div class="modal-footer">
           <button class="btn" onclick="goToCheckout()">Checkout</button>
@@ -214,13 +231,13 @@
     const imgs = document.querySelectorAll('.product-img');
     let idx = 0;
     function showImage(i) {
-      imgs.forEach(img=>img.classList.remove('active'));
+      imgs.forEach(img => img.classList.remove('active'));
       imgs[i].classList.add('active');
     }
-    function nextImage() { idx=(idx+1)%imgs.length; showImage(idx); }
-    function prevImage() { idx=(idx-1+imgs.length)%imgs.length; showImage(idx); }
+    function nextImage() { idx = (idx+1)%imgs.length; showImage(idx); }
+    function prevImage() { idx = (idx-1+imgs.length)%imgs.length; showImage(idx); }
 
-    // Cart & Checkout with Qty
+    // Cart & Checkout
     let cart = JSON.parse(localStorage.getItem('cart'))||[];
     const cartCount = document.getElementById('cart-count');
     const cartModal = document.getElementById('cart-modal');
@@ -230,61 +247,76 @@
     const totalPriceEl = document.getElementById('total-price');
 
     function saveCart() {
-      localStorage.setItem('cart',JSON.stringify(cart));
-      cartCount.innerText = cart.reduce((sum,i)=>sum+i.quantity,0);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      cartCount.innerText = cart.reduce((sum,i)=> sum + i.quantity, 0);
     }
+
     function renderCart() {
-      cartItemsEl.innerHTML='';
-      let sum=0;
-      if(!cart.length){
-        cartItemsEl.innerHTML='<p>No items in cart.</p>';
+      cartItemsEl.innerHTML = '';
+      let sum = 0;
+      if (!cart.length) {
+        cartItemsEl.innerHTML = '<p>No items in cart.</p>';
       } else {
-        cart.forEach((item,ix)=>{
-          const div=document.createElement('div');
-          div.className='cart-item';
-          div.innerHTML=`
-            <span>${item.name} — Rs. ${item.price*item.quantity}</span>
+        cart.forEach((item, idx) => {
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <span>${item.name} — Rs. ${item.price * item.quantity}</span>
             <div class="qty-controls">
-              <button class="qty-btn" onclick="updateQuantity(${ix},-1)">−</button>
+              <button class="qty-btn" onclick="updateQuantity(${idx}, -1)">−</button>
               <span>${item.quantity}</span>
-              <button class="qty-btn" onclick="updateQuantity(${ix},1)">+</button>
+              <button class="qty-btn" onclick="updateQuantity(${idx}, 1)">+</button>
             </div>`;
           cartItemsEl.appendChild(div);
-          sum+=item.price*item.quantity;
+          sum += item.price * item.quantity;
         });
       }
-      totalPriceEl.innerText=Total: Rs. ${sum};
+      totalPriceEl.innerText = Total: Rs. ${sum};
       saveCart();
     }
+
     function addToCart(id,name,price) {
-      const ex=cart.find(i=>i.id===id);
-      if(ex) ex.quantity++; else cart.push({id,name,price,quantity:1});
-      saveCart(); openCart();
+      const existing = cart.find(i=>i.id===id);
+      if (existing) existing.quantity++;
+      else cart.push({id,name,price,quantity:1});
+      saveCart();
+      openCart();
     }
-    function updateQuantity(i,delta) {
-      cart[i].quantity+=delta;
-      if(cart[i].quantity<1) cart.splice(i,1);
+
+    function updateQuantity(index, delta) {
+      cart[index].quantity += delta;
+      if (cart[index].quantity < 1) cart.splice(index,1);
       renderCart();
     }
+
     function openCart(){
-      cartModal.style.display='flex';
+      cartModal.style.display = 'flex';
       showStep('cart');
       renderCart();
     }
-    function closeCart(){ cartModal.style.display='none'; }
-    function showStep(step){
-      stepCart.classList.toggle('active',step==='cart');
-      stepCheckout.classList.toggle('active',step==='checkout');
+    function closeCart(){
+      cartModal.style.display = 'none';
     }
-    function goToCheckout(){ showStep('checkout'); }
-    function backToCart(){ showStep('cart'); }
+    function showStep(step) {
+      stepCart.classList.toggle('active', step==='cart');
+      stepCheckout.classList.toggle('active', step==='checkout');
+    }
+    function goToCheckout(){
+      showStep('checkout');
+    }
+    function backToCart(){
+      showStep('cart');
+    }
     function submitOrder(e){
       e.preventDefault();
-      const name=document.getElementById('name').value;
+      const name = document.getElementById('name').value;
       alert(Thank you, ${name}! Your order has been placed.);
-      cart=[]; saveCart(); closeCart();
+      cart = [];
+      saveCart();
+      closeCart();
     }
-    // init
+
+    // Initialize
     saveCart();
   </script>
 </body>
