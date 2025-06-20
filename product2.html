@@ -169,7 +169,7 @@
     </div>
   </div>
 
-  <!-- CART + CHECKOUT MsODAL -->
+  <!-- CART + CHECKOUT MODAL -->
   <div id="cart-modal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeCart()">&times;</span>
@@ -253,7 +253,7 @@
           sum+=item.price*item.quantity;
         });
       }
-      totalPriceEl.innerText=Total: Rs. ${sum};
+      totalPriceEl.innerText=`Total: Rs. ${sum}`;
       saveCart();
     }
     function addToCart(id,name,price) {
@@ -281,7 +281,7 @@
     function submitOrder(e){
       e.preventDefault();
       const name=document.getElementById('name').value;
-      alert(Thank you, ${name}! Your order has been placed.);
+      alert(`Thank you, ${name}! Your order has been placed.`);
       cart=[]; saveCart(); closeCart();
     }
     // init
