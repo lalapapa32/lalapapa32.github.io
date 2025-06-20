@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Black Chic Blazer – Faresa Khan</title>
   <style>
-    /* RESET & GLOBAL s*/
+    /* RESET & GLOBAL */
     * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; font-family:'Segoe UI',sans-serif; }
     body {
       background:#0a0a0a;
@@ -271,7 +271,7 @@
           sum += item.price * item.quantity;
         });
       }
-      totalPriceEl.innerText = Total: Rs. ${sum};
+      totalPriceEl.innerText = `Total: Rs. ${sum}`;
       saveCart();
     }
 
@@ -310,7 +310,7 @@
     function submitOrder(e){
       e.preventDefault();
       const name = document.getElementById('name').value;
-      alert(Thank you, ${name}! Your order has been placed.);
+      alert(`Thank you, ${name}! Your order has been placed.`);
       cart = [];
       saveCart();
       closeCart();
